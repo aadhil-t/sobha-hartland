@@ -1,0 +1,122 @@
+@import "../styles/variables.scss";
+
+.lifestyle-section {
+  padding: 6rem 0;
+  border-top: 1px solid #eee;
+
+  .lifestyle-item {
+    padding: 2rem 0;
+    border-bottom: $border;
+
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    position: relative; // added
+
+    &:hover {
+    //   background-color: #fafafa;
+    }
+
+    &.active {
+    //   background-color: #fff;
+
+      .lifestyle-content {
+        max-height: 600px; // smaller fixed max height
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: all;
+      }
+    }
+  }
+
+  .lifestyle-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 2rem 0;
+
+    .left {
+      display: flex;
+      align-items: center;
+      gap: 1.6rem;
+
+      img {
+        width: 40px;
+        height: 40px;
+      }
+
+      span {
+          font-family: "DM Sans";
+          font-weight: 200;
+          font-size: 40px;
+          line-height: 100%;
+          letter-spacing: 0%;
+          color: #111;
+      }
+    }
+
+    h2 {
+        font-family: "Noto Serif";
+        font-weight: 300;
+        font-style: Display Light;
+        font-size: 60px;
+        line-height: 80px;
+        letter-spacing: 0%;
+        margin: 0;
+        text-align: right;
+        flex: 1;
+
+      @media (max-width: 768px) {
+        text-align: right;
+        font-size: 2.2rem;
+        margin-top: 1rem;
+      }
+    }
+  }
+  
+  .lifestyle-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 8.8rem;
+      margin-top: 2.5rem;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(-10px);
+      pointer-events: none;
+      transition: max-height 0.5s ease, opacity 0.5s ease, transform 0.5s ease;
+      padding-bottom: 10.5rem;
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+      }
+    
+      .image-blk img {
+        width: 100%;
+        height: auto;
+        border-radius: 4px;
+        object-fit: cover;
+        min-height: 475px;
+        min-width: 740px;
+      }
+    
+      .text-blk {
+          p {
+          font-family: "DM Sans";
+          font-weight: 300;
+          font-style: Light;
+          font-size: 18px;
+          line-height: 30px;
+          letter-spacing: 0%;
+          color: $text-color-3;
+          max-width: 57rem;
+          margin: 0;
+          padding-bottom: 2rem;
+        
+          &:nth-child(3) {
+            padding-bottom: 0;
+          }
+        }
+    }
+  }
+}

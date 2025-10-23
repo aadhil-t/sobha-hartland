@@ -1,0 +1,113 @@
+@import '../styles/variables';
+@import '../styles/mixins';
+@import '../styles/fonts';
+
+
+.home-banner{
+    .bg-image{
+        background-image: url('../../public/assets/homepage/sobha-bnr.png');
+        background-size: cover;
+        background-position: center;
+        height: 900px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        text-align: center;
+        @media (max-width: 768px) {
+            height: 100vh;
+        }
+    }
+    .head-content-blk{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        top: -30px;
+        @media (max-width:768px) {
+            top: -50px;
+        }
+        @media (max-width: 600px) {
+            top: -40px;
+        }
+        img{
+            width: 320px;
+            height: 93px;
+        }
+        h1{
+            padding-top: 17.3rem;
+            padding-bottom: 1.6rem;
+            max-width: 90rem;
+            font-weight: 300;
+            font-style: Display Light;
+            font-size: 100px;
+            line-height: 95px;
+            letter-spacing: 0%;
+            text-align: center;
+            @media (max-width: 1024px) {
+                padding-top: 7.3rem;
+                padding-bottom: 4.6rem;
+                font-size: 8.5rem;
+                line-height: 98px;
+            }
+            @media (max-width: 768px) {
+                padding-top: 5.3rem;
+                padding-bottom: 4.6rem;
+                font-size: 6.5rem;
+                line-height: 69px;
+            }
+            @media (max-width: 600px) {
+                padding-top: 5.3rem;
+                padding-bottom: 2.6rem;
+                font-size: 4.5rem;
+                line-height: 58px;
+            }
+        }
+        p{
+            font-family: "DM Sans";
+            font-weight: 200;
+            font-size: 30px;
+            line-height: 40px;
+            letter-spacing: 0%;
+            text-align: center;
+            max-width: 85rem;
+            margin: 0;
+            @media (max-width: 1024px) {
+                font-size: 2.5rem;
+            }
+            @media (max-width: 600px) {
+                font-size: 2rem;
+                line-height: 30px; 
+            }
+        }
+    }
+    .media-btn-blk {
+    display: flex;
+    gap: 1.1rem;
+    align-items: center;
+    justify-content: flex-end;
+    position: relative;
+    top: 90px;
+  
+    .btn-media {
+      display: flex;
+      align-items: center;
+      background-color: $black;
+      gap: 7px;
+      padding: 8px 12px;
+      text-decoration: none;
+      color: white;
+      font-family: "DM Sans";
+      font-weight: 400;
+      font-style: Regular;
+      font-size: 18px;
+      line-height: 20px;
+      letter-spacing: 0%;
+  
+      &.green-btn {           
+        background-color: $green-color;
+      }
+    }
+  }
+}
