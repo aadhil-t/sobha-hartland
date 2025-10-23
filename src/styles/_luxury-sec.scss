@@ -1,3 +1,4 @@
+
 .luxury-slider {
   position: relative;
   overflow: visible;
@@ -6,7 +7,7 @@
     padding-bottom: 40px;
 
     .swiper-slide {
-      width: auto;
+      width: 924px !important; // ✅ fixed slide width
       flex-shrink: 0;
       transition: transform 0.3s ease;
     }
@@ -16,10 +17,6 @@
     text-align: center;
     overflow: hidden;
     transition: transform 0.3s ease;
-
-    &:hover {
-      transform: translateY(-5px);
-    }
 
     .luxury-img {
       overflow: hidden;
@@ -37,8 +34,9 @@
     }
 
     .luxury-slide-content {
-        padding: 16px 12px;
-        text-align: end;
+      padding: 16px 12px;
+      text-align: end;
+
       h4 {
         font-size: 18px;
         font-weight: 500;
@@ -80,19 +78,37 @@
     }
   }
 
-  .swiper-button-prev {
-    left: -20px;
+    .swiper-button-prev {
+      left: -30px;
+    }
+
+    .swiper-button-next {
+      right: -30px;
+    }
+
+  /* ✅ Responsive adjustments */
+  @media (max-width: 1440px) {
+    .luxury-swiper .swiper-slide {
+      width: 800px;
+    }
   }
 
-  .swiper-button-next {
-    right: -20px;
+  @media (max-width: 1024px) {
+    .luxury-swiper .swiper-slide {
+      width: 700px;
+    }
   }
 
   @media (max-width: 768px) {
+    .luxury-swiper .swiper-slide {
+      width: 90%; // use percentage for mobile
+    }
+
     .swiper-button-prev,
     .swiper-button-next {
       width: 32px;
       height: 32px;
+
       &::after {
         font-size: 12px;
       }

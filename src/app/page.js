@@ -210,74 +210,80 @@ export default function Home() {
         </div>
       </section>
 
-<div className="luxury-slider">
-  <Swiper
-    modules={[FreeMode, Navigation]}
-    slidesPerView={2.1}
-    spaceBetween={20}
-    centeredSlides={true}
-    navigation={true}
-    loop={true}
-    className="luxury-swiper"
-    breakpoints={{
-      0: { slidesPerView: 1.1, spaceBetween: 16 },
-      768: { slidesPerView: 2, spaceBetween: 18 },
-      1024: { slidesPerView: 3, spaceBetween: 20 },
-    }}
-  >
-    {/* Slide 1 */}
-    <SwiperSlide>
-      <div className="luxury-slide">
-        <div className="luxury-img">
-          <img src="/assets/homepage/swip1.png" alt="Pool Area" />
+  <div className="luxury-slider">
+    <Swiper
+      modules={[FreeMode, Navigation]}
+      slidesPerView="auto"
+      spaceBetween={20}
+      centeredSlides={true}
+      navigation={true}
+      loop={true}
+      className="luxury-swiper"
+        avigation={{
+        prevEl: '.luxury-prev', 
+        nextEl: '.luxury-next',
+      }}
+      breakpoints={{
+        0: { slidesPerView: 1.1, spaceBetween: 16 },
+        768: { slidesPerView: 2, spaceBetween: 18 },
+        1024: { slidesPerView: 3, spaceBetween: 20 },
+      }}
+    >
+      <SwiperSlide>
+        <div className="luxury-slide">
+          <div className="luxury-img">
+            <img src="/assets/homepage/swip1.png" alt="Pool Area" />
+          </div>
+          <div className="luxury-slide-content">
+            <h4>Elegant Pool Area</h4>
+            <p>Relax in a serene environment with modern design and natural lighting.</p>
+          </div>
         </div>
-        <div className="luxury-slide-content">
-          <h4>Elegant Pool Area</h4>
-          <p>Relax in a serene environment with modern design and natural lighting.</p>
-        </div>
-      </div>
-    </SwiperSlide>
+      </SwiperSlide>
 
-    {/* Slide 2 */}
-    <SwiperSlide>
-      <div className="luxury-slide">
-        <div className="luxury-img">
-          <img src="/assets/homepage/swip1.png" alt="Grand Lobby" />
+      <SwiperSlide>
+        <div className="luxury-slide">
+          <div className="luxury-img">
+            <img src="/assets/homepage/swip1.png" alt="Grand Lobby" />
+          </div>
+          <div className="luxury-slide-content">
+            <h4>Grand Lobby</h4>
+            <p>Experience sophistication from the moment you enter.</p>
+          </div>
         </div>
-        <div className="luxury-slide-content">
-          <h4>Grand Lobby</h4>
-          <p>Experience sophistication from the moment you enter.</p>
-        </div>
-      </div>
-    </SwiperSlide>
+      </SwiperSlide>
 
-    {/* Slide 3 */}
-    <SwiperSlide>
-      <div className="luxury-slide">
-        <div className="luxury-img">
-          <img src="/assets/homepage/swip1.png" alt="Modern Lounge" />
+      <SwiperSlide>
+        <div className="luxury-slide">
+          <div className="luxury-img">
+            <img src="/assets/homepage/swip1.png" alt="Modern Lounge" />
+          </div>
+          <div className="luxury-slide-content">
+            <h4>Modern Lounge</h4>
+            <p>Comfort and style merge for the perfect social setting.</p>
+          </div>
         </div>
-        <div className="luxury-slide-content">
-          <h4>Modern Lounge</h4>
-          <p>Comfort and style merge for the perfect social setting.</p>
-        </div>
-      </div>
-    </SwiperSlide>
+      </SwiperSlide>
 
-    {/* Slide 4 */}
-    <SwiperSlide>
-      <div className="luxury-slide">
-        <div className="luxury-img">
-          <img src="/assets/homepage/swip1.png" alt="Exclusive Bar" />
+      <SwiperSlide>
+        <div className="luxury-slide">
+          <div className="luxury-img">
+            <img src="/assets/homepage/swip1.png" alt="Exclusive Bar" />
+          </div>
+          <div className="luxury-slide-content">
+            <h4>Exclusive Bar</h4>
+            <p>Enjoy a curated selection of beverages in a cozy atmosphere.</p>
+          </div>
         </div>
-        <div className="luxury-slide-content">
-          <h4>Exclusive Bar</h4>
-          <p>Enjoy a curated selection of beverages in a cozy atmosphere.</p>
-        </div>
+      </SwiperSlide>
+    </Swiper>
+    
+      <div className="luxury-nav">
+        <div className="luxury-prev swiper-button-prev"></div>
+        <div className="luxury-next swiper-button-next"></div>
       </div>
-    </SwiperSlide>
-  </Swiper>
-</div>
+  </div>
+
 
 
 
