@@ -1,0 +1,145 @@
+.faq-section {
+  padding: 100px 0;
+  background: #fff;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* LEFT SIDE */
+  .faq-left {
+    flex: 0 0 35%;
+    text-align: left;
+
+    .faq-subtitle {
+      font-size: 16px;
+      color: #555;
+      margin-bottom: 8px;
+    }
+
+    .faq-title {
+      font-family: "Playfair Display", serif;
+      font-size: 40px;
+      font-weight: 400;
+      line-height: 1.3;
+      color: #111;
+
+      span {
+        display: block;
+        font-weight: 600;
+        font-size: 46px;
+      }
+    }
+  }
+
+  /* RIGHT SIDE */
+  .faq-right {
+    flex: 0 0 60%;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid #e0e0e0;
+    padding: 24px 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+
+    &:first-child {
+      border-top: 1px solid #e0e0e0;
+    }
+
+    .faq-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      cursor: pointer;
+      transition: color 0.3s ease;
+
+      .faq-number {
+        font-size: 14px;
+        font-weight: 600;
+        background: #111;
+        color: #fff;
+        width: 28px;
+        height: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 4px;
+        flex-shrink: 0;
+        transition: background 0.3s ease;
+      }
+
+      .faq-question {
+        font-size: 18px;
+        font-weight: 500;
+        color: #111;
+        margin: 0;
+        transition: color 0.3s ease;
+      }
+    }
+
+    .faq-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+      padding-left: 44px;
+
+      .faq-inner {
+        padding-top: 16px;
+        font-size: 14px;
+        color: #555;
+        line-height: 1.6;
+
+        p {
+          margin-bottom: 12px;
+          color: #353535;
+        }
+      }
+    }
+
+    &.active {
+      .faq-number {
+        background: #000;
+      }
+
+      .faq-question {
+        color: #000;
+        font-weight: 600;
+      }
+
+      .faq-content {
+        max-height: 500px;
+      }
+    }
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 991px) {
+    .container {
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .faq-left,
+    .faq-right {
+      flex: 100%;
+    }
+
+    .faq-left {
+      text-align: center;
+
+      .faq-title {
+        font-size: 36px;
+
+        span {
+          font-size: 42px;
+        }
+      }
+    }
+  }
+}
