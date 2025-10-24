@@ -10,9 +10,9 @@
 const nextConfig = {
   /* your existing config options */
   reactCompiler: true,
-  experimental: {
-    turbo: false, // disable Turbopack on Windows
-  },
+  // experimental: {
+  //   turbo: false, // disable Turbopack on Windows
+  // },
 };
 
 export default nextConfig;
