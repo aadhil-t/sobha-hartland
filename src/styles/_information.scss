@@ -1,0 +1,64 @@
+@import "../styles/variables";
+
+.information-section {
+  position: relative; // ensure pseudo-element positioning works
+  background-color: $bg-color-30;
+
+  // create the background image layer
+  &::before {
+    content: "";
+    position: absolute;
+    top: -240px;
+    right: 15%;
+    width: 100%;
+    max-width: 516px;
+    height: 515px;
+    background-image: url("../../public/assets/homepage/bg-rangoli.png"); // update path
+    // background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 0; // keep it behind content
+    @media (max-width: 1600px) {
+            right: 80px;
+    }
+    @media (max-width: 600px) {
+        right: 0;
+        height: 515px;
+    }
+    @media (max-width: 500px) {
+        right: 0;
+        height: 200px;
+        top: 2px;
+    }
+  }
+
+  // ensure content is above the background
+  .outer {
+    position: relative;
+    z-index: 1;
+
+    .info-title {
+      font-weight: 300;
+      font-size: 80px;
+      line-height: 65px;
+      letter-spacing: 0%;
+      text-align: center;
+      padding: 110px 0 127px;
+      margin: 0;
+      @media (max-width: 1024px) {
+        font-size: 50px;
+        line-height: 50px;
+      }
+      @media (max-width: 650px) {
+        font-size: 35px;
+        line-height: 50px;
+        padding: 80px 0 80px;
+      }
+      @media (max-width: 500px) {
+        font-size: 27px;
+        line-height: 50px;
+        padding: 80px 0 80px;
+      }
+    }
+  }
+}

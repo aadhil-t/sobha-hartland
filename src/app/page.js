@@ -7,6 +7,9 @@ import "../styles/_accordian-sec.scss";
 import "../styles/_luxury-sec.scss";
 import "../styles/_faq.scss";
 import "../styles/_step-sec.scss";
+import "../styles/_image-sec.scss";
+import "../styles/_information.scss";
+import "../styles/_dubai-sec.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Navigation } from "swiper/modules";
 import "swiper/css";
@@ -53,7 +56,7 @@ export default function Home() {
     },
   ];
 
-   const faqs = [
+  const faqs = [
     {
       number: "01",
       question: "Why invest in Sobha Hartland II?",
@@ -63,18 +66,20 @@ export default function Home() {
             Investing in Sobha Hartland II offers several compelling reasons:
           </p>
           <p>
-            <strong>Prime Location:</strong><br />
+            <strong>Prime Location:</strong>
+            <br />
             Sobha Hartland II is strategically located in the heart of Dubai,
             making it an attractive investment opportunity. Its proximity to
             major business districts, entertainment hubs, and key landmarks,
             including Burj Khalifa, Dubai Waterfront, and more.
           </p>
           <p>
-            <strong>Quality Construction and Design:</strong><br />
-            Sobha Group is known for its commitment to delivering
-            high-quality construction and design. Investing in Sobha Hartland II
-            ensures that you are purchasing a property built to the highest
-            standards, offering durability and long-term value.
+            <strong>Quality Construction and Design:</strong>
+            <br />
+            Sobha Group is known for its commitment to delivering high-quality
+            construction and design. Investing in Sobha Hartland II ensures that
+            you are purchasing a property built to the highest standards,
+            offering durability and long-term value.
           </p>
         </>
       ),
@@ -107,15 +112,12 @@ export default function Home() {
     setActiveIndex(activeIndex === index ? null : index);
   };
 
-  
-// inside Home component, with other states
-const [isPlaying, setIsPlaying] = useState(false);
+  // inside Home component, with other states
+  const [isPlaying, setIsPlaying] = useState(false);
 
-const handlePlay = () => {
-  setIsPlaying(true);
-};
-
-
+  const handlePlay = () => {
+    setIsPlaying(true);
+  };
 
   return (
     <main>
@@ -237,6 +239,99 @@ const handlePlay = () => {
         </div>
       </section>
 
+      {/* Dubai Section */}
+      <section class="dubai-centre">
+        <div className="container">
+          <div class="hero-image">
+            <img src="/assets/homepage/dubai.png" alt="Dubai skyline at night"/>
+            <div class="hero-text">
+              <h2>Right in the <span>Centre of Dubai</span></h2>
+            </div>
+          </div>
+
+          <div class="info-section">
+            <ul class="locations">
+              <li>
+                <h3>Dubai Design District</h3>
+                <p>8 minutes away – 6.7 km</p>
+              </li>
+              <li>
+                <h3>Ras Al Khor Wildlife Sanctuary</h3>
+                <p>5 minutes away – 6 km</p>
+              </li>
+              <li>
+                <h3>Dubai Mall</h3>
+                <p>13 minutes away – 8.9 km</p>
+              </li>
+              <li>
+                <h3>Burj Al Arab</h3>
+                <p>28 minutes away – 24 km</p>
+              </li>
+              <li>
+                <h3>Downtown Dubai</h3>
+                <p>10 minutes away – 8.7 km</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+    </section>
+
+
+    {/* Video Section */}
+      <section className="video-section">
+        <div className="container">
+          {/* Heading */}
+          <h2 className="video-heading">
+            Step Into <span>A World Of Sophistication</span>
+          </h2>
+
+          {/* Video Block */}
+          <div className="vdo-dec-blk">
+            <div className="video-wrapper">
+              {!isPlaying ? (
+                <>
+                  <img
+                    src="/assets/homepage/stepvideo.png"
+                    alt="Video Thumbnail"
+                    className="video-thumbnail"
+                  />
+                  <button className="play-btn" onClick={handlePlay}>
+                    <span className="play-icon">▶</span>
+                    <span className="play-text">Play</span>
+                  </button>
+                </>
+              ) : (
+                <div className="video-player">
+                  <iframe
+                    width="100%"
+                    height="500"
+                    src="https://www.youtube.com/embed/Scxs7L0vhZ4?autoplay=1"
+                    title="Sobha Hartland II Video"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+              )}
+            </div>
+
+            {/* Description */}
+            <div className="video-description">
+              <p>
+                Sobha Hartland II is strategically located in the heart of Dubai,
+                making it an attractive investment opportunity. Its proximity to
+                major business districts, entertainment hubs, and key landmarks,
+                including Burj Khalifa, Dubai Waterfront, and more.
+              </p>
+
+              <button className="connect-btn">
+                Connect Us <span className="arrow">→</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* lifestyle Accordian Section */}
       <section className="lifestyle-section">
         <div className="outer">
@@ -278,22 +373,27 @@ const handlePlay = () => {
 
       {/* Luxury slider Section */}
       <div className="luxury-slider">
+      <div className="container">
+        <div className="top-swip-head">
+          <h4>In the heart of</h4>
+          <h3>Luxury</h3>
+        </div>
         <Swiper
           modules={[FreeMode, Navigation]}
           slidesPerView="auto"
           spaceBetween={20}
-          centeredSlides={true}
+          centeredSlides={true}  
           navigation={true}
           loop={true}
           className="luxury-swiper"
-            avigation={{
-            prevEl: '.luxury-prev', 
-            nextEl: '.luxury-next',
+          avigation={{
+            prevEl: ".luxury-prev",
+            nextEl: ".luxury-next",
           }}
           breakpoints={{
-            0: { slidesPerView: 1.1, spaceBetween: 16 },
-            768: { slidesPerView: 2, spaceBetween: 18 },
-            1024: { slidesPerView: 3, spaceBetween: 20 },
+            0: { slidesPerView: 1, spaceBetween: 16 },
+            550: { slidesPerView: 1, spaceBetween: 16 },   // Below 800px → 2 slides
+            800: { slidesPerView: 1, spaceBetween: 20 },   // Above 800px → 3 slides
           }}
         >
           <SwiperSlide>
@@ -303,7 +403,10 @@ const handlePlay = () => {
               </div>
               <div className="luxury-slide-content">
                 <h4>Elegant Pool Area</h4>
-                <p>Relax in a serene environment with modern design and natural lighting.</p>
+                <p>
+                  Relax in a serene environment with modern design and natural
+                  lighting.
+                </p>
               </div>
             </div>
           </SwiperSlide>
@@ -339,110 +442,74 @@ const handlePlay = () => {
               </div>
               <div className="luxury-slide-content">
                 <h4>Exclusive Bar</h4>
-                <p>Enjoy a curated selection of beverages in a cozy atmosphere.</p>
+                <p>
+                  Enjoy a curated selection of beverages in a cozy atmosphere.
+                </p>
               </div>
             </div>
           </SwiperSlide>
         </Swiper>
-        
-          <div className="luxury-nav">
-            <div className="luxury-prev swiper-button-prev"></div>
-            <div className="luxury-next swiper-button-next"></div>
-          </div>
+      </div>
       </div>
 
       {/* Faq Section */}
-    <section className="faq-section">
-      <div className="container">
-        <div className="faq-left">
-          <p className="faq-subtitle">Got Questions?</p>
-          <h2 className="faq-title">
-            We've Got <br />
-            <span>Answers!</span>
-          </h2>
-        </div>
-
-        <div className="faq-right">
-          {faqs.map((faq, index) => (
-            <div
-              className={`faq-item ${activeIndex === index ? "active" : ""}`}
-              key={index}
-            >
-              <div
-                className="faq-header"
-                onClick={() => toggleAccordion(index)}
-              >
-                <span className="faq-number">{faq.number}</span>
-                <h3 className="faq-question">{faq.question}</h3>
-              </div>
-
-              <div
-                className="faq-content"
-                style={{
-                  maxHeight: activeIndex === index ? "500px" : "0px",
-                }}
-              >
-                <div className="faq-inner">{faq.answer}</div>
-              </div>
+      <section className="faq-section">
+          <div className="container">
+        <div className="outer">
+            <div className="faq-left">
+              <p className="faq-subtitle">Got Questions?</p>
+              <h2 className="faq-title">
+                We've Got <br />
+                <span>Answers!</span>
+              </h2>
             </div>
-          ))}
-        </div>
-      </div>
-    </section>
 
+            <div className="faq-right">
+              {faqs.map((faq, index) => (
+                <div
+                  className={`faq-item ${
+                    activeIndex === index ? "active" : ""
+                  }`}
+                  key={index}
+                >
+                  <div
+                    className="faq-header"
+                    onClick={() => toggleAccordion(index)}
+                  >
+                    <span className="faq-number">{faq.number}</span>
+                    <h3 className="faq-question">{faq.question}</h3>
+                  </div>
 
-      <section className="video-section">
-      <div className="container">
-        {/* Heading */}
-        <h2 className="video-heading">
-          Step Into <span>A World Of Sophistication</span>
-        </h2>
-
-        {/* Video Block */}
-        <div className="video-wrapper">
-          {!isPlaying ? (
-            <>
-              <img
-                src="/assets/homepage/stepvideo.png"
-                alt="Video Thumbnail"
-                className="video-thumbnail"
-              />
-              <button className="play-btn" onClick={handlePlay}>
-                <span className="play-icon">▶</span>
-                <span className="play-text">Play</span>
-              </button>
-            </>
-          ) : (
-          <div className="video-player">
-            <iframe
-              width="100%"
-              height="500"
-              src="https://www.youtube.com/embed/Scxs7L0vhZ4?autoplay=1"
-              title="Sobha Hartland II Video"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
+                  <div
+                    className="faq-content"
+                    style={{
+                      maxHeight: activeIndex === index ? "500px" : "0px",
+                    }}
+                  >
+                    <div className="faq-inner">{faq.answer}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
-
-          )}
         </div>
+      </section>
 
-        {/* Description */}
-        <div className="video-description">
-          <p>
-            Sobha Hartland II is strategically located in the heart of Dubai,
-            making it an attractive investment opportunity. Its proximity to
-            major business districts, entertainment hubs, and key landmarks,
-            including Burj Khalifa, Dubai Waterfront, and more.
-          </p>
-
-          <button className="connect-btn">
-            Connect Us <span className="arrow">→</span>
-          </button>
+      {/* image Section */}
+      <div className="image-section">
+        <div className="outer">
+          <img src="/assets/homepage/image-sec.png" alt="Exclusive Bar" />
         </div>
       </div>
-    </section>
+
+      {/* information Section */}
+      <div className="information-section">
+        <div className="outer">
+          <div className="container">
+            <h2 className="info-title">Need more informations?</h2>
+          </div>
+        </div>
+      </div>
 
 
     </main>
