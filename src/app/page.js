@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useState , useEffect} from "react";
 import "./home.scss";
 import "../styles/_community-sec.scss";
 import "../styles/_accordian-sec.scss";
@@ -17,12 +17,51 @@ import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-
+import gsap from "gsap";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
 
 export default function Home() {
+
+  
+  useEffect(() => {
+    const banner = document.querySelector(".home-banner");
+    const ball = banner.querySelector(".ball");
+
+    // Set initial position
+    gsap.set(ball, { xPercent: -50, yPercent: -50 });
+
+    const xTo = gsap.quickTo(ball, "x", { duration: 0.5, ease: "expo.out" });
+    const yTo = gsap.quickTo(ball, "y", { duration: 0.5, ease: "expo.out" });
+
+    const handleMouseMove = (e) => {
+      xTo(e.clientX);
+      yTo(e.clientY);
+    };
+
+    const handleMouseEnter = () => {
+      gsap.to(ball, { scale: 1, duration: 0.5, ease: "expo.out" });
+    };
+
+    const handleMouseLeave = () => {
+      gsap.to(ball, { scale: 0, duration: 0.5, ease: "expo.out" });
+    };
+
+    // Add event listeners to the banner only
+    banner.addEventListener("mousemove", handleMouseMove);
+    banner.addEventListener("mouseenter", handleMouseEnter);
+    banner.addEventListener("mouseleave", handleMouseLeave);
+
+    return () => {
+      // Cleanup on unmount
+      banner.removeEventListener("mousemove", handleMouseMove);
+      banner.removeEventListener("mouseenter", handleMouseEnter);
+      banner.removeEventListener("mouseleave", handleMouseLeave);
+    };
+  }, []);
+
+  
   const [activeIndex, setActiveIndex] = useState(0); // default open first (Live)
 
   const sections = [
@@ -120,10 +159,16 @@ export default function Home() {
     setIsPlaying(true);
   };
 
+
+  
+
   return (
     <main>
       {/* home banner */}
       <div className="home-banner">
+          <div className="ball">
+                <span className="ball-text">Connect</span>
+          </div> 
         <div className="bg-image">
           <div className="container">
             <div className="head-content-blk">

@@ -4,6 +4,45 @@
 
 
 .home-banner{
+    position: relative;
+    .ball {
+        width: 135px;
+        height: 135px;
+        border: 1px solid white;
+        position: fixed; // can also use absolute inside banner
+        top: 0;
+        left: 0;
+        border-radius: 50%;
+        pointer-events: none;
+        background-color: #0000001A;
+        transform: translate(-50%, -50%) scale(0);
+        z-index: 1000;
+        font-family: "DM Sans";
+        font-weight: 300;
+        font-style: Light; 
+        font-size: 24px !important;
+        line-height: 24px;
+        letter-spacing: 0%;
+        display: flex;            
+        align-items: center;     
+        justify-content: center; 
+        color: white;           
+        font-size: 16px;        
+        text-align: center;       
+      
+        /* Cream dot */
+        &::before {
+          content: "";
+          position: absolute;
+          top: 60px;
+          left: -5px;    
+          width: 12px;     
+          height: 12px;    
+          background-color: #f5f1e6; 
+          border-radius: 50%;
+        }
+      }
+
     .bg-image{
         background-image: url('../../public/assets/homepage/sobha-bnr.png');
         background-size: cover;
