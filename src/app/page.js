@@ -10,6 +10,7 @@ import "../styles/_step-sec.scss";
 import "../styles/_image-sec.scss";
 import "../styles/_information.scss";
 import "../styles/_dubai-sec.scss";
+import Header from "./components/Header";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Navigation } from "swiper/modules";
 import "swiper/css";
@@ -158,6 +159,8 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+      <Header/>
 
       {/* Community section */}
       <section className="community-section">
@@ -386,7 +389,7 @@ export default function Home() {
           navigation={true}
           loop={true}
           className="luxury-swiper"
-          avigation={{
+          Navigationavigation={{
             prevEl: ".luxury-prev",
             nextEl: ".luxury-next",
           }}
@@ -404,8 +407,7 @@ export default function Home() {
               <div className="luxury-slide-content">
                 <h4>Elegant Pool Area</h4>
                 <p>
-                  Relax in a serene environment with modern design and natural
-                  lighting.
+                  Clique nas numerações do mapa para visualizar as áreas comuns.
                 </p>
               </div>
             </div>
@@ -418,7 +420,7 @@ export default function Home() {
               </div>
               <div className="luxury-slide-content">
                 <h4>Grand Lobby</h4>
-                <p>Experience sophistication from the moment you enter.</p>
+                <p>Clique nas numerações do mapa para visualizar as áreas comuns.</p>
               </div>
             </div>
           </SwiperSlide>
@@ -430,7 +432,7 @@ export default function Home() {
               </div>
               <div className="luxury-slide-content">
                 <h4>Modern Lounge</h4>
-                <p>Comfort and style merge for the perfect social setting.</p>
+                <p>Clique nas numerações do mapa para visualizar as áreas comuns.</p>
               </div>
             </div>
           </SwiperSlide>
@@ -443,7 +445,7 @@ export default function Home() {
               <div className="luxury-slide-content">
                 <h4>Exclusive Bar</h4>
                 <p>
-                  Enjoy a curated selection of beverages in a cozy atmosphere.
+                  Clique nas numerações do mapa para visualizar as áreas comuns.
                 </p>
               </div>
             </div>

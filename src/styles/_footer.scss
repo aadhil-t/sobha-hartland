@@ -1,0 +1,27 @@
+.footer-sec{
+    .outer{
+        .footer-wrapper{
+            .footer-left{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 56px 0 59px;
+                gap: 50px;
+                @media (max-width: 768px) {
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    align-items: center;
+                }
+                p{
+                    color: black;
+                    margin: 0;
+                    text-align: center;
+                }
+                .social-icons{
+                    display: flex;
+                    gap: 3.5rem;
+                }
+            }
+        }
+    }
+}
