@@ -1,18 +1,9 @@
-// /** @type {import('next').NextConfig} */
-// const nextConfig = {
-//   /* config options here */
-//   reactCompiler: true,
-// };
-
-// export default nextConfig;
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  /* your existing config options */
-  reactCompiler: true,
-  // experimental: {
-  //   turbo: false, // disable Turbopack on Windows
-  // },
+  webpack: (config) => {
+    config.externals = [...(config.externals || []), '@aws-sdk/core'];
+    return config;
+  },
 };
 
 export default nextConfig;
