@@ -1,0 +1,67 @@
+/* Banner Ball */
+.banner-ball {
+  width: 135px;
+  height: 135px;
+  border: 1px solid white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  background-color: #0000001A;
+  transform: translate(-50%, -50%) scale(0);
+  z-index: 1000;
+  font-family: "DM Sans";
+  font-weight: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 24px;
+  text-align: center;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 60px;
+    left: -5px;
+    width: 12px;
+    height: 12px;
+    background-color: #f5f1e6; // cream dot
+    border-radius: 50%;
+  }
+}
+
+/* Information Ball */
+.info-ball {
+  width: 135px;
+  height: 135px;
+  border: 1px solid #D3D3D3;
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  background-color: #FFFFFFF2;
+  transform: translate(-50%, -50%) scale(0);
+  z-index: 1000;
+  font-family: "DM Sans";
+  font-weight: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000000;
+  font-size: 24px;
+  text-align: center;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 60px;
+    left: -5px;
+    width: 12px;
+    height: 12px;
+    background-color: #000; // black dot
+    border-radius: 50%;
+  }
+}

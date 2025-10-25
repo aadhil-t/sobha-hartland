@@ -2,6 +2,7 @@
 import Link from "next/link";
 import React, { useState , useEffect} from "react";
 import "./home.scss";
+import "../styles/_common.scss";
 import "../styles/_community-sec.scss";
 import "../styles/_accordian-sec.scss";
 import "../styles/_luxury-sec.scss";
@@ -24,44 +25,46 @@ import "swiper/css/pagination";
 
 export default function Home() {
 
-  
-  useEffect(() => {
-    const banner = document.querySelector(".home-banner");
-    const ball = banner.querySelector(".ball");
+useEffect(() => {
+  const sections = [
+    { selector: ".home-banner", ballClass: ".banner-ball" },
+    { selector: ".information-section", ballClass: ".info-ball" },
+  ];
 
-    // Set initial position
+  const cleanupFns = [];
+
+  sections.forEach(({ selector, ballClass }) => {
+    const section = document.querySelector(selector);
+    const ball = document.querySelector(ballClass);
+
+    if (!section || !ball) return;
+
     gsap.set(ball, { xPercent: -50, yPercent: -50 });
 
     const xTo = gsap.quickTo(ball, "x", { duration: 0.5, ease: "expo.out" });
     const yTo = gsap.quickTo(ball, "y", { duration: 0.5, ease: "expo.out" });
 
-    const handleMouseMove = (e) => {
-      xTo(e.clientX);
-      yTo(e.clientY);
-    };
+    const handleMove = (e) => { xTo(e.clientX); yTo(e.clientY); };
+    const handleEnter = () => gsap.to(ball, { scale: 1, duration: 0.5, ease: "expo.out" });
+    const handleLeave = () => gsap.to(ball, { scale: 0, duration: 0.5, ease: "expo.out" });
 
-    const handleMouseEnter = () => {
-      gsap.to(ball, { scale: 1, duration: 0.5, ease: "expo.out" });
-    };
+    section.addEventListener("mousemove", handleMove);
+    section.addEventListener("mouseenter", handleEnter);
+    section.addEventListener("mouseleave", handleLeave);
 
-    const handleMouseLeave = () => {
-      gsap.to(ball, { scale: 0, duration: 0.5, ease: "expo.out" });
-    };
+    cleanupFns.push(() => {
+      section.removeEventListener("mousemove", handleMove);
+      section.removeEventListener("mouseenter", handleEnter);
+      section.removeEventListener("mouseleave", handleLeave);
+    });
+  });
 
-    // Add event listeners to the banner only
-    banner.addEventListener("mousemove", handleMouseMove);
-    banner.addEventListener("mouseenter", handleMouseEnter);
-    banner.addEventListener("mouseleave", handleMouseLeave);
+  return () => cleanupFns.forEach((fn) => fn());
+}, []);
 
-    return () => {
-      // Cleanup on unmount
-      banner.removeEventListener("mousemove", handleMouseMove);
-      banner.removeEventListener("mouseenter", handleMouseEnter);
-      banner.removeEventListener("mouseleave", handleMouseLeave);
-    };
-  }, []);
 
-  
+
+
   const [activeIndex, setActiveIndex] = useState(0); // default open first (Live)
 
   const sections = [
@@ -166,7 +169,7 @@ export default function Home() {
     <main>
       {/* home banner */}
       <div className="home-banner">
-          <div className="ball">
+          <div className="banner-ball">
                 <span className="ball-text">Connect</span>
           </div> 
         <div className="bg-image">
@@ -551,6 +554,9 @@ export default function Home() {
 
       {/* information Section */}
       <div className="information-section">
+          <div className="info-ball">
+            <span className="ball-text">Connect</span>
+          </div> 
         <div className="outer">
           <div className="container">
             <h2 className="info-title">Need more informations?</h2>
