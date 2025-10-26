@@ -1,3 +1,4 @@
+@import './variables.scss';
 /* Banner Ball */
 .banner-ball {
   width: 135px;
@@ -63,5 +64,50 @@
     height: 12px;
     background-color: #000; // black dot
     border-radius: 50%;
+  }
+}
+
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.4rem;
+  font-family: "DM Sans";
+  font-weight: 400;
+  font-size: 1.8rem; // 18px
+  line-height: 1.2rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  &.primary {
+    background-color: $black;
+    color: #fff;
+
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      text-decoration: none;
+    }
+  }
+
+  &.green {
+    background-color: $green-color;
+    color: #fff;
+
+    &:hover {
+      background-color: darken($green-color, 10%);
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  img.icon {
+    transition: transform 0.3s ease;
+  }
+
+  &:hover img.icon {
+    transform: translateX(3px);
   }
 }

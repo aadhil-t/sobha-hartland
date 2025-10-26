@@ -212,7 +212,7 @@ useEffect(() => {
               </p>
             </div>
             <div className="media-btn-blk">
-              <Link href="/callback" className="btn-media">
+              <Link href="/callback" className="btn primary">
                 Call Back
                 <img
                   src="/assets/homepage/call.svg"
@@ -221,7 +221,7 @@ useEffect(() => {
                 />
               </Link>
 
-              <Link href="/whatsapp" className="btn-media green-btn">
+              <Link href="/whatsapp" className="btn green">
                 WhatsApp
                 <img
                   src="/assets/homepage/whatsapp.svg"
