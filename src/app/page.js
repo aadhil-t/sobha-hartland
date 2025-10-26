@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import React, { useState , useEffect} from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./home.scss";
 import "../styles/_common.scss";
 import "../styles/_community-sec.scss";
@@ -64,9 +64,34 @@ useEffect(() => {
 }, []);
 
 
+ // 👇 Scroll-based open logic
+useEffect(() => {
+  const options = {
+    root: null,
+    rootMargin: "0px 0px -20% 0px",
+    threshold: 0.5,
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const index = Number(entry.target.dataset.index);
+        setActiveIndex(index);
+      }
+    });
+  }, options);
+
+  itemRefs.current.forEach((el) => el && observer.observe(el));
+
+  return () => {
+    itemRefs.current.forEach((el) => el && observer.unobserve(el));
+  };
+}, []);
 
 
-  const [activeIndex, setActiveIndex] = useState(0); // default open first (Live)
+
+  const [activeIndex, setActiveIndex] = useState(0);
+  const itemRefs = useRef([]);
 
   const sections = [
     {
@@ -385,7 +410,7 @@ useEffect(() => {
       </section>
 
       {/* lifestyle Accordian Section */}
-      <section className="lifestyle-section">
+      {/* <section className="lifestyle-section">
         <div className="outer">
           <div className="container">
             {sections.map((item, index) => (
@@ -421,7 +446,50 @@ useEffect(() => {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
+<section className="lifestyle-section">
+  <div className="outer">
+    <div className="container">
+      {sections.map((item, index) => (
+        <div
+          key={index}
+          data-index={index}
+          ref={(el) => (itemRefs.current[index] = el)}
+          className={`lifestyle-item ${activeIndex === index ? "active" : ""}`}
+        >
+          <div className="lifestyle-header">
+            <div className="left">
+              <img src={item.icon} alt={item.label} />
+              <span>{item.label}</span>
+            </div>
+            <h2>{item.title}</h2>
+          </div>
+
+          <div
+            className="lifestyle-content"
+            style={{
+              maxHeight:
+                activeIndex === index
+                  ? `${itemRefs.current[index]?.querySelector(".lifestyle-content").scrollHeight}px`
+                  : "0px",
+            }}
+          >
+            <div className="image-blk">
+              <img src={item.image} alt={item.label} />
+            </div>
+            <div className="text-blk">
+              {item.text.map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+
 
       {/* Luxury slider Section */}
       <div className="luxury-section">
