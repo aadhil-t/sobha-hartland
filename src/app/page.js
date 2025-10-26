@@ -25,6 +25,7 @@ import "swiper/css/pagination";
 
 export default function Home() {
 
+  // Mouse follow effect //
 useEffect(() => {
   const sections = [
     { selector: ".home-banner", ballClass: ".banner-ball" },
@@ -423,6 +424,7 @@ useEffect(() => {
       </section>
 
       {/* Luxury slider Section */}
+      <div className="luxury-section">
       <div className="luxury-slider">
       <div className="container">
         <div className="top-swip-head">
@@ -499,6 +501,7 @@ useEffect(() => {
             </div>
           </SwiperSlide>
         </Swiper>
+      </div>
       </div>
       </div>
 
