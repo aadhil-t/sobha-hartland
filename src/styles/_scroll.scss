@@ -15,6 +15,10 @@
   letter-spacing: 0%;
   transition: opacity 0.3s;
   z-index: 10;
+  @media (max-width: 500px) {
+    bottom: 30px;
+    left: 42%;
+  }
 }
 
 .scroll-down:hover {
