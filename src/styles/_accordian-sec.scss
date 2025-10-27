@@ -18,17 +18,52 @@
       align-items: center;
       flex-wrap: wrap;
       padding: 2rem 0;
-
+      @media (max-width: 550px) {
+        flex-direction: column;
+        gap: 15px;
+      }
       .left {
         display: flex;
         align-items: center;
         gap: 1.6rem;
 
-        img { width: 40px; height: 40px; }
-        span { font-family: "DM Sans"; font-weight: 200; font-size: 40px; color: #111; }
+        img { 
+          width: 40px;
+          height: 40px; 
+        }
+        span { 
+          font-family: "DM Sans";
+          font-weight: 200; 
+          font-size:  40px;
+          color: #111; 
+          @media (max-width: 1024px) {
+            font-size: 30px; 
+          }
+          @media (max-width: 770px) {
+            font-size: 25px; 
+          }
+          @media (max-width: 550px) {
+            font-size: 20px; 
+          }
+        }
       }
 
-      h2 { font-family: "Noto Serif"; font-weight: 300; font-size: 60px; flex: 1; text-align: right; }
+      h2 { 
+        font-family: "Noto Serif"; 
+        font-weight: 300; 
+        font-size: 60px; 
+        flex: 1; 
+        text-align: right; 
+        @media (max-width: 1024px) {
+          font-size: 35px; 
+        }
+        @media (max-width: 770px) {
+          font-size: 25px; 
+        }
+        @media (max-width: 550px) {
+          font-size: 19px; 
+        }
+      }
     }
 
     .lifestyle-content {

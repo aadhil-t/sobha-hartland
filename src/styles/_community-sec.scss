@@ -2,7 +2,9 @@
 
 .community-section {
   padding: 8rem 0 15.9rem 0;
-
+  @media (max-width: 768px) {
+    padding: 8rem 0 5rem 0;
+  }
   .community-container {
     display: grid;
     grid-template-columns: 1fr 1.2fr 1fr;

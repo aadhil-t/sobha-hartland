@@ -1,7 +1,9 @@
 .luxury-section {
   background-color: #fff;
   padding-top: 14.6rem;
-
+  @media (max-width: 768px) {
+    padding-top: 1.5rem;
+  }
   .luxury-slider {
     position: relative;
     overflow: visible;
@@ -22,6 +24,12 @@
         line-height: 100%;
         letter-spacing: 0%;
         margin: 0;
+        @media (max-width: 1024px) {
+          font-size: 45px;
+        }
+        @media (max-width: 600px) {
+          font-size: 30px;
+        }
       }
 
       h3 {
@@ -31,6 +39,12 @@
         letter-spacing: 0%;
         margin: 0;
         padding-bottom: 2.6rem;
+        @media (max-width: 1024px) {
+          font-size: 60px;
+        }
+        @media (max-width: 600px) {
+          font-size: 40px;
+        }
       }
     }
 
@@ -79,19 +93,26 @@
               text-align: right;
               margin-bottom: 6px;
               color: #111;
+              @media (max-width:600px) {
+                font-size: 28px;
+              }
             }
 
             p {
               font-family: "DM Sans";
               font-weight: 300;
               font-style: Light;
-              font-size: 18px;
               line-height: 30px;
+              font-size: 18px;
               letter-spacing: 0%;
               text-align: right;
               margin: 0;
               color: #111;
               max-width: 35rem;
+              @media (max-width: 600px) {
+                font-size: 17px;
+                line-height: 23px;
+              }
             }
           }
         }

@@ -9,6 +9,12 @@
     max-width: 1400px;
     margin: 0 auto;
     margin-bottom: -375px;
+    @media (max-width:768px) {
+      margin-bottom: -200px;
+    }
+    @media (max-width:600px) {
+      margin-bottom: -100px;
+    }
     img {
       width: 100%;
       height: auto;
@@ -55,14 +61,21 @@
     background-color: $bg-color-30;
     padding: 43.3rem 0 16rem;
     border-top: 1px solid #eee;
-
+    @media (max-width: 768px) {
+      padding: 24.3rem 0 4.5rem;
+    }
+    @media (max-width: 600px) {
+      padding: 13.3rem 0 4.5rem;
+    }
     .locations-wrapper {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
       margin-left: 355px;
       gap: 4.2rem;
-
+      @media (max-width: 1291px) {
+        margin-left: 0;
+      }
       .locations {
         display: flex;
         justify-content: center;
@@ -71,7 +84,9 @@
         padding: 0;
         margin: 0;
         gap: 4rem 6rem;
-
+        @media (max-width: 901px) {
+          justify-content: flex-start;
+        }
         li {
           text-align: left;
           position: relative;
@@ -92,7 +107,9 @@
             line-height: 100%;
             color: $black;
             margin-bottom: 0.3rem;
-
+            @media (max-width: 500px) {
+              font-size: 25px;
+            }
             &::before {
               content: "";
               background: url("/assets/homepage/loc.svg") no-repeat center center;
@@ -115,6 +132,9 @@
             letter-spacing: 0%;
             color: $black;
             margin: 0;
+            @media (max-width: 500px) {
+              font-size: 18px;
+            }
           }
         }
 
@@ -127,6 +147,9 @@
 
         &.bottom-row {
           flex-wrap: nowrap;
+          @media (max-width: 901px) {
+            flex-wrap: wrap;
+          }
           li {
             // flex: 0 0 calc(26% - 4rem);
           }
