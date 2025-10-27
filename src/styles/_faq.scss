@@ -27,6 +27,7 @@
       line-height: 100%;
       letter-spacing: 0%;
       color: #303030;
+      margin: 0;
       @media (max-width: 768px) {
         margin: 0;
         font-size: 20px;
@@ -62,7 +63,7 @@
 
   .faq-item {
     border-bottom: 1px solid #e0e0e0;
-    padding: 24px 0;
+    padding: 34px 0 40px;
     overflow: hidden;
     transition: all 0.3s ease;
 
@@ -132,6 +133,11 @@
           letter-spacing: 0%;
           margin-bottom: 12px;
           color: #353535;
+          margin: 0;
+          padding-bottom: 2.2rem;
+          &:nth-child(3){
+            padding-bottom: 0;
+          }
           @media (max-width: 600px) {
             font-size: 16px;
           }

@@ -559,7 +559,7 @@ useEffect(() => {
 
 
       {/* lifestyle Accordian Section */}
-    <section className="lifestyle-section">
+    {/* <section className="lifestyle-section">
       <div className="outer">
         <div className="container">
           {sections.map((item, index) => (
@@ -599,8 +599,50 @@ useEffect(() => {
           ))}
         </div>
       </div>
-    </section>
+    </section> */}
 
+    <section className="lifestyle-section">
+  <div className="outer">
+    <div className="container">
+      {sections.map((item, index) => (
+        <div
+          key={index}
+          data-index={index}
+          ref={(el) => (itemRefs.current[index] = el)}
+          className={`lifestyle-item ${activeIndex === index ? "active" : ""}`}
+          onClick={() => setActiveIndex(index)} // 👈 Added click handler
+        >
+          <div className="lifestyle-header">
+            <div className="left">
+              <img src={item.icon} alt={item.label} />
+              <span>{item.label}</span>
+            </div>
+            <h2>{item.title}</h2>
+          </div>
+
+          <div
+            className="lifestyle-content"
+            style={{
+              maxHeight:
+                activeIndex === index
+                  ? `${itemRefs.current[index]?.querySelector(".lifestyle-content").scrollHeight}px`
+                  : "0px",
+            }}
+          >
+            <div className="image-blk">
+              <img src={item.image} alt={item.label} />
+            </div>
+            <div className="text-blk">
+              {item.text.map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
 
 
       {/* Luxury slider Section */}

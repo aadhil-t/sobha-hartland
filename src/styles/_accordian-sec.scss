@@ -11,7 +11,9 @@
     cursor: pointer;
     position: relative;
     transition: transform 0.4s ease;
-
+    &.active {
+        padding-bottom: 9.2rem;
+      }
     .lifestyle-header {
       display: flex;
       justify-content: space-between;
@@ -80,7 +82,6 @@
 
       .image-blk img {
         width: 100%;
-        border-radius: 4px;
         object-fit: cover;
         transform: scale(0.98);
         opacity: 0.8;
@@ -95,10 +96,12 @@
         color: $text-color-3;
         transform: translateY(20px);
         opacity: 0;
+        margin: 0;
+        padding-bottom: 22px;
         transition: opacity 0.8s ease, transform 0.8s ease;
         &:nth-child(1) { transition-delay: 0.1s; }
         &:nth-child(2) { transition-delay: 0.2s; }
-        &:nth-child(3) { transition-delay: 0.3s; }
+        &:nth-child(3) { transition-delay: 0.3s;  padding-bottom: 0; }
       }
 
       @media (max-width: 860px) { grid-template-columns: 1fr; gap: 4rem; }

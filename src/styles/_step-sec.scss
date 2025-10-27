@@ -47,7 +47,6 @@
       width: 100%;
       max-width: 1400px;
       margin: 0 auto;
-      border-radius: 6px;
       overflow: hidden;
       cursor: none; // hide default cursor for GSAP effect
 
@@ -64,7 +63,6 @@
         height: 100%;
         object-fit: cover;
         border: none;
-        border-radius: 6px;
         display: block;
         transition: opacity 0.4s ease; // smooth fade between img/iframe
       }
