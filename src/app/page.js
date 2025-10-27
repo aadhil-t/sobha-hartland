@@ -11,6 +11,7 @@ import "../styles/_step-sec.scss";
 import "../styles/_image-sec.scss";
 import "../styles/_information.scss";
 import "../styles/_dubai-sec.scss";
+import "../styles/_scroll.scss";
 import Header from "./components/Header";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Navigation } from "swiper/modules";
@@ -194,10 +195,12 @@ useEffect(() => {
   return (
     <main>
       {/* home banner */}
+  <>
       <div className="home-banner">
-          <div className="banner-ball">
-                <span className="ball-text">Connect</span>
-          </div> 
+        <div className="banner-ball">
+          <span className="ball-text">Connect</span>
+        </div>
+
         <div className="bg-image">
           <div className="container">
             <div className="head-content-blk">
@@ -211,6 +214,7 @@ useEffect(() => {
                 lush green spaces and sustainable amenities.
               </p>
             </div>
+
             <div className="media-btn-blk">
               <Link href="/callback" className="btn primary">
                 Call Back
@@ -232,12 +236,21 @@ useEffect(() => {
             </div>
           </div>
         </div>
+
+        {/* 👇 Scroll-down button added here */}
+        <a href="#next-section" className="scroll-down">
+          <span></span>
+          Scroll Down
+        </a>
       </div>
+
+
+    </>
 
       <Header/>
 
       {/* Community section */}
-      <section className="community-section">
+      <section className="community-section" id="next-section">
         <div className="outer">
           <div className="container">
             <div className="community-container">
