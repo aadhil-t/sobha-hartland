@@ -111,3 +111,45 @@
     transform: translateX(3px);
   }
 }
+
+
+
+.connect-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 10px 12px 18px;
+  border: 1px solid #1E1E1E;
+  background: transparent;
+  color: #000;
+  font-family: "DM Sans";
+  font-weight: 300;
+  font-style: Light;
+  font-size: 18px;
+  line-height: 20px;
+  letter-spacing: 0%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+
+  &::after {
+    content: "→";
+    font-size: 16px;
+    transition: transform 0.3s ease;
+  }
+
+  &:hover {
+    background-color: #000;
+    color: #fff;
+
+    &::after {
+      transform: translateX(4px);
+    }
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+}

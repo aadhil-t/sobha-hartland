@@ -13,6 +13,7 @@ import "../styles/_information.scss";
 import "../styles/_dubai-sec.scss";
 import "../styles/_scroll.scss";
 import Header from "./components/Header";
+import AnimatedButton from "../app/components/Connectbtn"; // adjust path if needed
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Navigation } from "swiper/modules";
 import "swiper/css";
@@ -391,11 +392,10 @@ useEffect(() => {
                   transcends the ordinary and immerses you in unparalleled
                   luxury.
                 </p>
-
-                <a href="#" className="btn-connect">
-                  Connect Us
-                  {/* <img src="/assets/icons/arrow-right.svg" alt="arrow" /> */}
-                </a>
+                  <AnimatedButton
+                    label="Connect Us"
+                    onClick={() => console.log("Button clicked")}
+                  />
               </div>
             </div>
           </div>
@@ -403,17 +403,18 @@ useEffect(() => {
       </section>
 
       {/* Dubai Section */}
-      <section class="dubai-centre">
-        <div className="container">
-          <div class="hero-image">
-            <img src="/assets/homepage/dubai.png" alt="Dubai skyline at night"/>
-            <div class="hero-text">
-              <h2>Right in the <span>Centre of Dubai</span></h2>
-            </div>
+    <section class="dubai-centre">
+      <div class="container">
+        <div class="hero-image">
+          <img src="/assets/homepage/dubai.png" alt="Dubai skyline at night" />
+          <div class="hero-text">
+            <h2>Right in the <span>Centre of Dubai</span></h2>
           </div>
+        </div>
 
-          <div class="info-section">
-            <ul class="locations">
+        <div class="info-section">
+          <div class="locations-wrapper">
+            <ul class="locations top-row">
               <li>
                 <h3>Dubai Design District</h3>
                 <p>8 minutes away – 6.7 km</p>
@@ -422,6 +423,9 @@ useEffect(() => {
                 <h3>Ras Al Khor Wildlife Sanctuary</h3>
                 <p>5 minutes away – 6 km</p>
               </li>
+            </ul>
+
+            <ul class="locations bottom-row">
               <li>
                 <h3>Dubai Mall</h3>
                 <p>13 minutes away – 8.9 km</p>
@@ -437,13 +441,18 @@ useEffect(() => {
             </ul>
           </div>
         </div>
+      </div>
     </section>
 
+    {/* white Section */}
+    {/* <div  className="white-black-sec" style={{background: "white", height: "740px"}}>
+    </div> */}
 
     {/* Video Section */}
       <section className="video-section">
         <div className="container">
           {/* Heading */}
+          <div className="video-blk">
           <h2 className="video-heading">
             Step Into <span>A World Of Sophistication</span>
           </h2>
@@ -479,101 +488,73 @@ useEffect(() => {
             </div>
 
             {/* Description */}
-            <div className="video-description">
-              <p>
-                Sobha Hartland II is strategically located in the heart of Dubai,
-                making it an attractive investment opportunity. Its proximity to
-                major business districts, entertainment hubs, and key landmarks,
-                including Burj Khalifa, Dubai Waterfront, and more.
-              </p>
-
-              <button className="connect-btn">
-                Connect Us <span className="arrow">→</span>
-              </button>
-            </div>
+          </div>
           </div>
         </div>
+        
+            <div className="description-blk">
+              <div className="container">
+                <div className="outer">
+                  <div className="video-description">
+                    <p>
+                      Sobha Hartland II is strategically located in the heart of Dubai,
+                      making it an attractive investment opportunity. Its proximity to
+                      major business districts, entertainment hubs, and key landmarks,
+                      including Burj Khalifa, Dubai Waterfront, and more.
+                    </p>
+
+                      <AnimatedButton
+                        label="Connect Us"
+                        onClick={() => console.log("Button clicked")}
+                      />
+                  </div>
+                </div>
+              </div>
+            </div>
       </section>
 
       {/* lifestyle Accordian Section */}
-      {/* <section className="lifestyle-section">
-        <div className="outer">
-          <div className="container">
-            {sections.map((item, index) => (
-              <div
-                key={index}
-                className={`lifestyle-item ${
-                  activeIndex === index ? "active" : ""
-                }`}
-                onMouseEnter={() => setActiveIndex(index)} // 👈 change on hover
-                onClick={() => setActiveIndex(index)} // also works on mobile
-              >
-                <div className="lifestyle-header">
-                  <div className="left">
-                    <img src={item.icon} alt={item.label} />
-                    <span>{item.label}</span>
-                  </div>
-                  <h2>{item.title}</h2>
+    <section className="lifestyle-section">
+      <div className="outer">
+        <div className="container">
+          {sections.map((item, index) => (
+            <div
+              key={index}
+              data-index={index}
+              ref={(el) => (itemRefs.current[index] = el)}
+              className={`lifestyle-item ${activeIndex === index ? "active" : ""}`}
+            >
+              <div className="lifestyle-header">
+                <div className="left">
+                  <img src={item.icon} alt={item.label} />
+                  <span>{item.label}</span>
                 </div>
-
-                {activeIndex === index && (
-                  <div className="lifestyle-content">
-                    <div className="image-blk">
-                      <img src={item.image} alt={item.label} />
-                    </div>
-                    <div className="text-blk">
-                      {item.text.map((p, i) => (
-                        <p key={i}>{p}</p>
-                      ))}
-                    </div>
-                  </div>
-                )}
+                <h2>{item.title}</h2>
               </div>
-            ))}
-          </div>
-        </div>
-      </section> */}
-<section className="lifestyle-section">
-  <div className="outer">
-    <div className="container">
-      {sections.map((item, index) => (
-        <div
-          key={index}
-          data-index={index}
-          ref={(el) => (itemRefs.current[index] = el)}
-          className={`lifestyle-item ${activeIndex === index ? "active" : ""}`}
-        >
-          <div className="lifestyle-header">
-            <div className="left">
-              <img src={item.icon} alt={item.label} />
-              <span>{item.label}</span>
-            </div>
-            <h2>{item.title}</h2>
-          </div>
 
-          <div
-            className="lifestyle-content"
-            style={{
-              maxHeight:
-                activeIndex === index
-                  ? `${itemRefs.current[index]?.querySelector(".lifestyle-content").scrollHeight}px`
-                  : "0px",
-            }}
-          >
-            <div className="image-blk">
-              <img src={item.image} alt={item.label} />
+              <div
+                className="lifestyle-content"
+                style={{
+                  maxHeight:
+                    activeIndex === index
+                      ? `${itemRefs.current[index]?.querySelector(".lifestyle-content").scrollHeight}px`
+                      : "0px",
+                }}
+              >
+                <div className="image-blk">
+                  <img src={item.image} alt={item.label} />
+                </div>
+                <div className="text-blk">
+                  {item.text.map((p, i) => (
+                    <p key={i}>{p}</p>
+                  ))}
+                </div>
+              </div>
             </div>
-            <div className="text-blk">
-              {item.text.map((p, i) => (
-                <p key={i}>{p}</p>
-              ))}
-            </div>
-          </div>
+          ))}
         </div>
-      ))}
-    </div>
-  </div>
-</section>
+      </div>
+    </section>
 
 
 

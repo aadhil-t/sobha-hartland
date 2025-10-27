@@ -1,16 +1,18 @@
+@import "../styles/variables";
 .dubai-centre {
-  background-color: #f8f8f8;
-  color: #333;
+  background-color: $bg-color-30;
+  color: $black;
   text-align: center;
+
   .hero-image {
     position: relative;
     max-width: 1400px;
-    
+    margin: 0 auto;
+
     img {
-        width: 100%;
-        max-width: 1400px;
-        height: auto;
-        display: block;
+      width: 100%;
+      height: auto;
+      display: block;
     }
 
     .hero-text {
@@ -18,134 +20,139 @@
       top: 75px;
       left: 55px;
       color: #fff;
-      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-        @media (max-width: 768px) {
-          left: 20px;
-        }
+
+      @media (max-width: 768px) {
+        left: 20px;
+      }
+
       h2 {
-          font-family: "DM Sans";
-          font-weight: 200;
-          font-style: Display Light;
-          font-size: 60px;    
-          line-height: 65px;
-          letter-spacing: 0%;
-          @media (max-width: 768px) {
-              font-size: 4rem;    
-              line-height: 4.5rem;
-          }
-          @media (max-width: 425px) {
-              font-size: 3rem;    
-              line-height: 3.5rem;
-          }
+        font-family: "DM Sans";
+        font-weight: 200;
+        font-size: 60px;
+        line-height: 65px;
+        color: #fff;
+
+        @media (max-width: 768px) {
+          font-size: 4rem;
+          line-height: 4.5rem;
+        }
+
+        @media (max-width: 425px) {
+          font-size: 3rem;
+          line-height: 3.5rem;
+        }
+
         span {
-            font-family: "Noto Sans";
-            font-weight: 300;
-            font-style: Display Light;
-            font-size: 60px;
-            line-height: 65px;
-            letter-spacing: 0%;
-             @media (max-width: 768px) {
-              font-size: 4rem;    
-              line-height: 4.5rem;
-          }
-             @media (max-width: 425px) {
-              font-size: 3rem;    
-              line-height: 3.5rem;
-          } 
+          font-family: "Noto Serif";
+          font-weight: 300;
         }
       }
     }
   }
 
+  /* ----------- Locations Section ----------- */
   .info-section {
-    padding: 3rem 2rem 4rem;
+    padding: 5.9rem 0 16rem;
     border-top: 1px solid #eee;
 
-    .locations {
+    .locations-wrapper {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-start;
+      flex-direction: column;
       align-items: flex-start;
-      list-style: none;
-      padding-left: 355px;
-    //   margin: 0 auto;
-    //   max-width: 1100px;
-      gap: 3rem;
-      @media (max-width: 1165px) {
-        padding-left: 0;
-      }
-      @media (max-width: 600px) {
-          padding-left: 0;
-          flex-direction: column;
-      }
-      li {
-        // flex: 1 1 180px;
-        text-align: left;
-        position: relative;
-        padding-left: 1.8rem;
-        display: grid;
-          @media (max-width: 600px) {
-            justify-items: start;
-      }
-        h3 {
-            font-family: DM Sans;
+      margin-left: 355px;
+      gap: 4.2rem;
+      margin-top: 4rem;
+
+      .locations {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        gap: 4rem 6rem;
+
+        li {
+          text-align: left;
+          position: relative;
+          padding-left: 2.4rem;
+          width: 100%;
+          max-width: 300px;
+          min-width: 300px;
+          &:nth-child(2) {
+            width: auto;
+            max-width: 100%;
+            min-width: auto;
+          }
+
+          h3 {
+            font-family: "DM Sans";
             font-weight: 200;
-            font-style: ExtraLight;
             font-size: 30px;
             line-height: 100%;
-            letter-spacing: 0%;
-            color: #333;
-            display: ruby-text;
-            @media (max-width: 600px) {
-                font-size: 2.2rem;
-            }
-          &::before {
-            content: '';
-            background: url('../../public/assets/homepage/loc.svg') no-repeat center center;
-            background-size: contain;
-            width: 22px;
-            height: 22px;
-            position: absolute;
-            left: -11px;
-            top: 8px;
-            opacity: 0.7;
-          }
-        }
+            color: $black;
+            margin-bottom: 0.3rem;
 
-        p {
-            font-family: DM Sans;
+            &::before {
+              content: "";
+              background: url("/assets/homepage/loc.svg") no-repeat center center;
+              background-size: contain;
+              width: 18px;
+              height: 22px;
+              position: absolute;
+              left: 0;
+              top: 4px;
+              opacity: 0.7;
+            }
+          }
+
+          p {
+            font-family: "DM Sans";
             font-weight: 200;
-            font-style: ExtraLight;
+            padding-top: 0.6rem;
             font-size: 20px;
             line-height: 100%;
             letter-spacing: 0%;
+            color: $black;
             margin: 0;
-            color: #888;
+          }
+        }
+
+        &.top-row {
+          flex-wrap: nowrap;
+          li {
+            // flex: 0 0 calc(40% - 4rem);
+          }
+        }
+
+        &.bottom-row {
+          flex-wrap: nowrap;
+          li {
+            // flex: 0 0 calc(26% - 4rem);
+          }
         }
       }
-    }
-  }
 
-  /* Responsive */
-  @media (max-width: 768px) {
-    .hero-text h2 {
-      font-size: 2rem;
-    }
+      /* Responsive adjustments */
+      @media (max-width: 1165px) {
+        .locations {
+          flex-wrap: wrap;
+          gap: 3rem 4rem;
 
-    .info-section {
-      padding: 2rem 1.5rem;
-
-      .locations {
-        gap: 4rem;
-
-        h2{
-          font-size: 2rem;
+          li {
+            // flex: 0 0 calc(50% - 2rem);
+          }
         }
-        li {
-          text-align: start;
-        //   padding-left: 0;
-          p {
-            font-size: 1.5rem;
+      }
+
+      @media (max-width: 768px) {
+        .locations {
+          flex-direction: column;
+          align-items: flex-start;
+
+          li {
+            flex: 0 0 100%;
+            text-align: left;
           }
         }
       }

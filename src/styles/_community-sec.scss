@@ -1,7 +1,7 @@
 @import "../styles/variables.scss";
 
 .community-section {
-  padding: 8rem 0;
+  padding: 8rem 0 15.9rem 0;
 
   .community-container {
     display: grid;
@@ -16,40 +16,42 @@
       justify-items: center;
     }
   }
-  .community-container::before {
-  content: "";
-  position: absolute;
-  top: -165px;
-  right: 240px;
-  width: 100%;
-  max-width: 516px;
-  height: 515px;
-  background-image: url('../../public/assets/homepage/bg-rangoli.png'); /* adjust path */
-  background-position: center;
-  background-repeat: no-repeat;
-  z-index: -1; 
-}
 
-  /* Left side text */
+  .community-container::before {
+    content: "";
+    position: absolute;
+    top: -165px;
+    right: 240px;
+    width: 100%;
+    max-width: 516px;
+    height: 515px;
+    background-image: url('../../public/assets/homepage/bg-rangoli.png'); /* adjust path */
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+  }
+
+  /* ======================== */
+  /* Left side text + stats   */
+  /* ======================== */
   .community-left {
     h3 {
-        font-family: "DM Sans";
-        font-weight: 200;
-        font-size: 50px;
-        line-height: 40px;
-        letter-spacing: 0%;
-        color: #222;
-        margin: 0;
-        padding-bottom: 1.6rem;
+      font-family: "DM Sans";
+      font-weight: 200;
+      font-size: 50px;
+      line-height: 40px;
+      color: #222;
+      margin: 0;
+      padding-bottom: 1.6rem;
     }
 
     h2 {
-        font-weight: 300;
-        font-size: 60px;
-        line-height: 65px;
-        letter-spacing: 0%;
-        color: #111;
-        padding-bottom: 4.5rem;
+      font-weight: 300;
+      font-size: 60px;
+      line-height: 65px;
+      color: #111;
+      padding-bottom: 4.5rem;
+
       @media (max-width: 600px) {
         font-size: 3.6rem;
       }
@@ -59,13 +61,19 @@
       display: flex;
       flex-direction: column;
       gap: 2.4rem;
+
       @media (max-width: 1024px) {
         align-items: center;
       }
+
       .stat-item {
         display: flex;
         align-items: center;
         gap: 2.5rem;
+        padding-bottom: 2.4rem;
+        border-bottom: $border; // light divider
+
+       
 
         img {
           width: 56px;
@@ -73,13 +81,11 @@
         }
 
         h4 {
-            font-weight: 300;
-            font-style: Display Light;
-            font-size: 40px;
-            // line-height: 85px;
-            letter-spacing: 0%;
-            text-align: center;
-            color: $black;
+          font-weight: 300;
+          font-style: Display Light;
+          font-size: 40px;
+          letter-spacing: 0%;
+          color: $black;
 
           span {
             font-size: 1.6rem;
@@ -89,20 +95,21 @@
         }
 
         p {
-            font-family: DM Sans;
-            font-weight: 200;
-            font-style: ExtraLight;
-            font-size: 20px;
-            line-height: 32px;
-            letter-spacing: 0%;
-            color: $text-color-3;
-            margin: 0;
+          font-family: "DM Sans";
+          font-weight: 200;
+          font-style: ExtraLight;
+          font-size: 20px;
+          line-height: 32px;
+          color: $text-color-3;
+          margin: 0;
         }
       }
     }
   }
 
-  /* Middle image */
+  /* ======================== */
+  /* Middle image section     */
+  /* ======================== */
   .community-image {
     img {
       width: 100%;
@@ -111,7 +118,9 @@
     }
   }
 
-  /* Right side content */
+  /* ======================== */
+  /* Right side text + button */
+  /* ======================== */
   .community-right {
     p {
       font-size: 1.6rem;
