@@ -27,6 +27,43 @@ import "swiper/css/pagination";
 export default function Home() {
 
   // Mouse follow effect //
+// useEffect(() => {
+//   const sections = [
+//     { selector: ".home-banner", ballClass: ".banner-ball" },
+//     { selector: ".information-section", ballClass: ".info-ball" },
+//   ];
+
+//   const cleanupFns = [];
+
+//   sections.forEach(({ selector, ballClass }) => {
+//     const section = document.querySelector(selector);
+//     const ball = document.querySelector(ballClass);
+
+//     if (!section || !ball) return;
+
+//     gsap.set(ball, { xPercent: -50, yPercent: -50 });
+
+//     const xTo = gsap.quickTo(ball, "x", { duration: 0.5, ease: "expo.out" });
+//     const yTo = gsap.quickTo(ball, "y", { duration: 0.5, ease: "expo.out" });
+
+//     const handleMove = (e) => { xTo(e.clientX); yTo(e.clientY); };
+//     const handleEnter = () => gsap.to(ball, { scale: 1, duration: 0.5, ease: "expo.out" });
+//     const handleLeave = () => gsap.to(ball, { scale: 0, duration: 0.5, ease: "expo.out" });
+
+//     section.addEventListener("mousemove", handleMove);
+//     section.addEventListener("mouseenter", handleEnter);
+//     section.addEventListener("mouseleave", handleLeave);
+
+//     cleanupFns.push(() => {
+//       section.removeEventListener("mousemove", handleMove);
+//       section.removeEventListener("mouseenter", handleEnter);
+//       section.removeEventListener("mouseleave", handleLeave);
+//     });
+//   });
+
+//   return () => cleanupFns.forEach((fn) => fn());
+// }, []);
+
 useEffect(() => {
   const sections = [
     { selector: ".home-banner", ballClass: ".banner-ball" },
@@ -46,23 +83,61 @@ useEffect(() => {
     const xTo = gsap.quickTo(ball, "x", { duration: 0.5, ease: "expo.out" });
     const yTo = gsap.quickTo(ball, "y", { duration: 0.5, ease: "expo.out" });
 
-    const handleMove = (e) => { xTo(e.clientX); yTo(e.clientY); };
-    const handleEnter = () => gsap.to(ball, { scale: 1, duration: 0.5, ease: "expo.out" });
-    const handleLeave = () => gsap.to(ball, { scale: 0, duration: 0.5, ease: "expo.out" });
+    let isPaused = false;
+
+    const handleMove = (e) => {
+      if (!isPaused) {
+        xTo(e.clientX);
+        yTo(e.clientY);
+      }
+    };
+
+    const handleEnter = () => {
+      if (!isPaused)
+        gsap.to(ball, { scale: 1, duration: 0.5, ease: "expo.out" });
+    };
+
+    const handleLeave = () => {
+      gsap.to(ball, { scale: 0, duration: 0.5, ease: "expo.out" });
+    };
 
     section.addEventListener("mousemove", handleMove);
     section.addEventListener("mouseenter", handleEnter);
     section.addEventListener("mouseleave", handleLeave);
 
+    // ✅ Reusable handlers
+    const handlePauseEnter = () => {
+      isPaused = true;
+      gsap.to(ball, { opacity: 0, scale: 0.5, duration: 0.3 });
+    };
+
+    const handlePauseLeave = () => {
+      isPaused = false;
+      gsap.to(ball, { opacity: 1, scale: 1, duration: 0.3 });
+    };
+
+    // 🎯 Target both buttons and scroll-down link
+    const pauseElements = section.querySelectorAll(".btn, .scroll-down");
+
+    pauseElements.forEach((el) => {
+      el.addEventListener("mouseenter", handlePauseEnter);
+      el.addEventListener("mouseleave", handlePauseLeave);
+    });
+
     cleanupFns.push(() => {
       section.removeEventListener("mousemove", handleMove);
       section.removeEventListener("mouseenter", handleEnter);
       section.removeEventListener("mouseleave", handleLeave);
+      pauseElements.forEach((el) => {
+        el.removeEventListener("mouseenter", handlePauseEnter);
+        el.removeEventListener("mouseleave", handlePauseLeave);
+      });
     });
   });
 
   return () => cleanupFns.forEach((fn) => fn());
 }, []);
+
 
 
  // 👇 Scroll-based open logic
@@ -195,7 +270,7 @@ useEffect(() => {
   return (
     <main>
       {/* home banner */}
-  <>
+    <>
       <div className="home-banner">
         <div className="banner-ball">
           <span className="ball-text">Connect</span>
@@ -243,8 +318,6 @@ useEffect(() => {
           Scroll Down
         </a>
       </div>
-
-
     </>
 
       <Header/>
