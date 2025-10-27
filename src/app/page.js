@@ -47,18 +47,55 @@ export default function Home() {
 //     const xTo = gsap.quickTo(ball, "x", { duration: 0.5, ease: "expo.out" });
 //     const yTo = gsap.quickTo(ball, "y", { duration: 0.5, ease: "expo.out" });
 
-//     const handleMove = (e) => { xTo(e.clientX); yTo(e.clientY); };
-//     const handleEnter = () => gsap.to(ball, { scale: 1, duration: 0.5, ease: "expo.out" });
-//     const handleLeave = () => gsap.to(ball, { scale: 0, duration: 0.5, ease: "expo.out" });
+//     let isPaused = false;
+
+//     const handleMove = (e) => {
+//       if (!isPaused) {
+//         xTo(e.clientX);
+//         yTo(e.clientY);
+//       }
+//     };
+
+//     const handleEnter = () => {
+//       if (!isPaused)
+//         gsap.to(ball, { scale: 1, duration: 0.5, ease: "expo.out" });
+//     };
+
+//     const handleLeave = () => {
+//       gsap.to(ball, { scale: 0, duration: 0.5, ease: "expo.out" });
+//     };
 
 //     section.addEventListener("mousemove", handleMove);
 //     section.addEventListener("mouseenter", handleEnter);
 //     section.addEventListener("mouseleave", handleLeave);
 
+//     // ✅ Reusable handlers
+//     const handlePauseEnter = () => {
+//       isPaused = true;
+//       gsap.to(ball, { opacity: 0, scale: 0.5, duration: 0.3 });
+//     };
+
+//     const handlePauseLeave = () => {
+//       isPaused = false;
+//       gsap.to(ball, { opacity: 1, scale: 1, duration: 0.3 });
+//     };
+
+//     // 🎯 Target both buttons and scroll-down link
+//     const pauseElements = section.querySelectorAll(".btn, .scroll-down");
+
+//     pauseElements.forEach((el) => {
+//       el.addEventListener("mouseenter", handlePauseEnter);
+//       el.addEventListener("mouseleave", handlePauseLeave);
+//     });
+
 //     cleanupFns.push(() => {
 //       section.removeEventListener("mousemove", handleMove);
 //       section.removeEventListener("mouseenter", handleEnter);
 //       section.removeEventListener("mouseleave", handleLeave);
+//       pauseElements.forEach((el) => {
+//         el.removeEventListener("mouseenter", handlePauseEnter);
+//         el.removeEventListener("mouseleave", handlePauseLeave);
+//       });
 //     });
 //   });
 
@@ -69,6 +106,7 @@ useEffect(() => {
   const sections = [
     { selector: ".home-banner", ballClass: ".banner-ball" },
     { selector: ".information-section", ballClass: ".info-ball" },
+    { selector: ".video-section .vdo-dec-blk", ballClass: ".video-ball" }
   ];
 
   const cleanupFns = [];
@@ -106,24 +144,31 @@ useEffect(() => {
     section.addEventListener("mouseenter", handleEnter);
     section.addEventListener("mouseleave", handleLeave);
 
-    // ✅ Reusable handlers
+    // Pause when hovering buttons / links
+    const pauseElements = section.querySelectorAll(".btn, .scroll-down, iframe, .play-btn");
     const handlePauseEnter = () => {
       isPaused = true;
       gsap.to(ball, { opacity: 0, scale: 0.5, duration: 0.3 });
     };
-
     const handlePauseLeave = () => {
       isPaused = false;
       gsap.to(ball, { opacity: 1, scale: 1, duration: 0.3 });
     };
 
-    // 🎯 Target both buttons and scroll-down link
-    const pauseElements = section.querySelectorAll(".btn, .scroll-down");
-
     pauseElements.forEach((el) => {
       el.addEventListener("mouseenter", handlePauseEnter);
       el.addEventListener("mouseleave", handlePauseLeave);
     });
+
+    // 👉 If this is the video ball, add click-to-play behavior
+    if (ballClass === ".video-ball") {
+      const videoBall = ball;
+      videoBall.addEventListener("click", () => {
+        const playButton = document.querySelector(".video-thumbnail");
+        if (playButton) playButton.click(); // trigger the React state change
+      });
+      cleanupFns.push(() => videoBall.removeEventListener("click", () => {}));
+    }
 
     cleanupFns.push(() => {
       section.removeEventListener("mousemove", handleMove);
@@ -411,8 +456,10 @@ useEffect(() => {
             <h2>Right in the <span>Centre of Dubai</span></h2>
           </div>
         </div>
+      </div>
 
         <div class="info-section">
+          <div className="container">
           <div class="locations-wrapper">
             <ul class="locations top-row">
               <li>
@@ -440,8 +487,8 @@ useEffect(() => {
               </li>
             </ul>
           </div>
+          </div>
         </div>
-      </div>
     </section>
 
     {/* white Section */}
@@ -450,68 +497,66 @@ useEffect(() => {
 
     {/* Video Section */}
       <section className="video-section">
-        <div className="container">
-          {/* Heading */}
-          <div className="video-blk">
-          <h2 className="video-heading">
-            Step Into <span>A World Of Sophistication</span>
-          </h2>
-
-          {/* Video Block */}
-          <div className="vdo-dec-blk">
-            <div className="video-wrapper">
-              {!isPlaying ? (
-                <>
-                  <img
-                    src="/assets/homepage/stepvideo.png"
-                    alt="Video Thumbnail"
-                    className="video-thumbnail"
-                  />
-                  <button className="play-btn" onClick={handlePlay}>
-                    <span className="play-icon">▶</span>
-                    <span className="play-text">Play</span>
-                  </button>
-                </>
-              ) : (
-                <div className="video-player">
-                  <iframe
-                    width="100%"
-                    height="500"
-                    src="https://www.youtube.com/embed/Scxs7L0vhZ4?autoplay=1"
-                    title="Sobha Hartland II Video"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  ></iframe>
-                </div>
-              )}
-            </div>
-
-            {/* Description */}
+          <div className="video-ball">
+            <span className="ball-text">Play</span>
           </div>
-          </div>
-        </div>
-        
-            <div className="description-blk">
-              <div className="container">
-                <div className="outer">
-                  <div className="video-description">
-                    <p>
-                      Sobha Hartland II is strategically located in the heart of Dubai,
-                      making it an attractive investment opportunity. Its proximity to
-                      major business districts, entertainment hubs, and key landmarks,
-                      including Burj Khalifa, Dubai Waterfront, and more.
-                    </p>
+          <div className="container">
+            {/* Heading */}
+            <div className="video-blk">
+              <h2 className="video-heading">
+                Step Into <span>A World Of Sophistication</span>
+              </h2>
 
-                      <AnimatedButton
-                        label="Connect Us"
-                        onClick={() => console.log("Button clicked")}
+              {/* Video Block */}
+              <div className="vdo-dec-blk">
+                <div className="video-wrapper">
+                  {!isPlaying ? (
+                    <>
+                     <img
+                        src="/assets/homepage/stepvideo.png"
+                        alt="Video Thumbnail"
+                        className="video-thumbnail"
+                        onClick={() => setIsPlaying(true)}
                       />
-                  </div>
+                    </>
+                  ) : (
+                    <div className="video-player">
+                      <iframe
+                        width="100%"
+                        height="500"
+                        src="https://www.youtube.com/embed/Scxs7L0vhZ4?autoplay=1"
+                        title="Sobha Hartland II Video"
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      ></iframe>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
-      </section>
+          </div>
+
+          <div className="description-blk">
+            <div className="container">
+              <div className="outer">
+                <div className="video-description">
+                  <p>
+                    Sobha Hartland II is strategically located in the heart of Dubai,
+                    making it an attractive investment opportunity. Its proximity to
+                    major business districts, entertainment hubs, and key landmarks,
+                    including Burj Khalifa, Dubai Waterfront, and more.
+                  </p>
+                  <AnimatedButton
+                    label="Connect Us"
+                    onClick={() => console.log("Button clicked")}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+    </section>
+
 
       {/* lifestyle Accordian Section */}
     <section className="lifestyle-section">

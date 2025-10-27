@@ -1,6 +1,6 @@
 @import "../styles/variables";
 .dubai-centre {
-  background-color: $bg-color-30;
+  // background-color: $bg-color-30;
   color: $black;
   text-align: center;
 
@@ -8,7 +8,7 @@
     position: relative;
     max-width: 1400px;
     margin: 0 auto;
-
+    margin-bottom: -375px;
     img {
       width: 100%;
       height: auto;
@@ -52,7 +52,8 @@
 
   /* ----------- Locations Section ----------- */
   .info-section {
-    padding: 5.9rem 0 16rem;
+    background-color: $bg-color-30;
+    padding: 43.3rem 0 16rem;
     border-top: 1px solid #eee;
 
     .locations-wrapper {
@@ -61,7 +62,6 @@
       align-items: flex-start;
       margin-left: 355px;
       gap: 4.2rem;
-      margin-top: 4rem;
 
       .locations {
         display: flex;

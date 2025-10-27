@@ -88,9 +88,12 @@
           color: $black;
 
           span {
-            font-size: 1.6rem;
-            font-weight: 300;
-            margin-left: 0.3rem;
+            font-family: "DM Sans";
+            font-weight: 200;
+            font-style: ExtraLight;
+            font-size: 20px;
+            line-height: 32px;
+            letter-spacing: 0%;;
           }
         }
 
@@ -123,10 +126,13 @@
   /* ======================== */
   .community-right {
     p {
-      font-size: 1.6rem;
-      color: #444;
-      line-height: 1.7;
-      margin-bottom: 2rem;
+      font-family: "DM Sans";
+      font-weight: 300;
+      font-style: Light;
+      font-size: 18px;
+      line-height: 30px;
+      letter-spacing: 0%;
+      color: $text-color-3;
     }
 
     .btn-connect {

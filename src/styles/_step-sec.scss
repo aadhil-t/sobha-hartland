@@ -1,13 +1,15 @@
 @import "../styles/variables";
+
 .video-section {
-  // background: $bg-color-30;
-  padding-top: 13.5rem ;
+  padding-top: 13.5rem;
   position: relative;
   overflow: hidden;
+
   @media (max-width: 768px) {
     padding: 40px 0;
   }
-  .video-blk{
+
+  .video-blk {
     /* Heading */
     .video-heading {
       font-family: "DM Sans";
@@ -19,6 +21,7 @@
       text-align: end;
       padding-bottom: 3.5rem;
       margin: 0;
+
       span {
         font-family: "Noto Serif";
         font-weight: 300;
@@ -27,12 +30,13 @@
         line-height: 100%;
         letter-spacing: 0%;
         color: #111;
+
         @media (max-width: 1024px) {
           font-size: 45px;
         }
       }
     }
-  
+
     /* Video Wrapper */
     .video-wrapper {
       position: relative;
@@ -41,72 +45,45 @@
       margin: 0 auto;
       border-radius: 6px;
       overflow: hidden;
-  
+      cursor: none; // hide default cursor for GSAP effect
+
+      // Maintain consistent aspect ratio for both thumbnail and iframe
+      aspect-ratio: 16 / 9;
+      background: #000; // fallback in case of slow load
+
       .video-thumbnail,
-      .video-player {
+      .video-player iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
         width: 100%;
-        height: auto;
+        height: 100%;
+        object-fit: cover;
+        border: none;
         border-radius: 6px;
         display: block;
+        transition: opacity 0.4s ease; // smooth fade between img/iframe
       }
-  
-      .play-btn {
-        position: absolute;
-        top: 50%;
-        left: 75%;
-        transform: translate(-50%, -50%);
-        background: transparent;
-        border: 1.2px solid rgba(255, 255, 255, 0.8);
-        border-radius: 50%;
-        width: 100px;
-        height: 100px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        color: #fff;
-        font-size: 16px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-  
-        &:hover {
-          background: rgba(255, 255, 255, 0.3);
-        }
-  
-        .play-icon {
-          font-size: 24px;
-          margin-bottom: 4px;
-          position: relative;
-          top: 12px;
-          right: 46px;
-          color: red;
-        }
-  
-        .play-text {
-          font-family: "DM Sans";
-          font-weight: 300;
-          font-style: Light;
-          font-size: 24px;
-          line-height: 24px;
-          letter-spacing: 0%;
-          text-align: center;
-          letter-spacing: 0.5px;
-          position: relative;
-          top: -20px;
-        }
+
+      .video-player {
+        width: 100%;
+        height: 100%;
+        position: relative;
       }
     }
   }
 
   /* Description Block */
-  .description-blk{
+  .description-blk {
     background: $bg-color-30;
     padding-top: 331px;
     padding-bottom: 134px;
     margin-top: -330px;
-    .outer{
+
+    .outer {
       display: flex;
       justify-content: flex-end;
+
       .video-description {
         max-width: 600px;
         text-align: left;
@@ -114,12 +91,15 @@
         font-size: 15px;
         line-height: 1.7;
         padding-top: 6rem;
+
         p {
-          margin: 0;
-          margin-bottom: 4.8rem;
+          font-family: "DM Sans";
+          font-weight: 300;
+          font-style: Light;
+          font-size: 18px;
+          line-height: 30px;
           color: #353535;
         }
-    
       }
     }
   }
@@ -134,14 +114,8 @@
       }
     }
 
-    .video-wrapper .play-btn {
-      width: 80px;
-      height: 80px;
-      font-size: 14px;
-
-      .play-icon {
-        font-size: 20px;
-      }
+    .video-wrapper {
+      aspect-ratio: 16 / 9; // maintain aspect ratio on mobile too
     }
 
     .video-description {
@@ -149,7 +123,8 @@
       font-size: 14px;
     }
   }
-  .vdo-dec-blk{
+
+  .vdo-dec-blk {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
