@@ -18,6 +18,9 @@
     background-position: center;
     background-repeat: no-repeat;
     z-index: 0; // keep it behind content
+    /* Rotation Animation */
+    animation: rotateRangoli 40s linear infinite;
+    transform-origin: center center;
     @media (max-width: 1600px) {
             right: 80px;
     }
@@ -29,6 +32,16 @@
         right: 0;
         height: 200px;
         top: 2px;
+    }
+  }
+  
+  /* Smooth rotation keyframes */
+  @keyframes rotateRangoli {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
     }
   }
 
