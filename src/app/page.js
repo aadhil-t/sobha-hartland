@@ -21,194 +21,166 @@ import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
 
+
+  // community counter animation //
+  const countersRef = useRef([]);
+  const sectionRef = useRef(null);
+  useEffect(() => {
+      const ctx = gsap.context(() => {
+        countersRef.current.forEach((counterEl) => {
+          if (!counterEl) return;
+
+          const finalValue = parseFloat(counterEl.dataset.value);
+          const suffix = counterEl.dataset.suffix || "";
+          const prefix = counterEl.dataset.prefix || "";
+
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 70%", // start when section enters viewport
+              end: "bottom 30%", // end when scrolled past section
+              toggleActions: "play none none reset", 
+              // 👆 plays when enters, resets when leaves top/bottom
+            },
+          });
+
+          tl.fromTo(
+            counterEl,
+            { innerText: 0 },
+            {
+              innerText: finalValue,
+              duration: 2.5,
+              ease: "power1.out",
+              snap: { innerText: 1 },
+              onUpdate() {
+                counterEl.textContent = `${prefix}${Math.floor(
+                  counterEl.innerText
+                )}${suffix}`;
+              },
+            }
+          );
+        });
+      }, sectionRef);
+
+      return () => ctx.revert();
+  }, []);
+
+
   // Mouse follow effect //
-// useEffect(() => {
-//   const sections = [
-//     { selector: ".home-banner", ballClass: ".banner-ball" },
-//     { selector: ".information-section", ballClass: ".info-ball" },
-//   ];
+  useEffect(() => {
+    const sections = [
+      { selector: ".home-banner", ballClass: ".banner-ball" },
+      { selector: ".information-section", ballClass: ".info-ball" },
+      { selector: ".video-section .vdo-dec-blk", ballClass: ".video-ball" }
+    ];
 
-//   const cleanupFns = [];
+    const cleanupFns = [];
 
-//   sections.forEach(({ selector, ballClass }) => {
-//     const section = document.querySelector(selector);
-//     const ball = document.querySelector(ballClass);
+    sections.forEach(({ selector, ballClass }) => {
+      const section = document.querySelector(selector);
+      const ball = document.querySelector(ballClass);
 
-//     if (!section || !ball) return;
+      if (!section || !ball) return;
 
-//     gsap.set(ball, { xPercent: -50, yPercent: -50 });
+      gsap.set(ball, { xPercent: -50, yPercent: -50 });
 
-//     const xTo = gsap.quickTo(ball, "x", { duration: 0.5, ease: "expo.out" });
-//     const yTo = gsap.quickTo(ball, "y", { duration: 0.5, ease: "expo.out" });
+      const xTo = gsap.quickTo(ball, "x", { duration: 0.5, ease: "expo.out" });
+      const yTo = gsap.quickTo(ball, "y", { duration: 0.5, ease: "expo.out" });
 
-//     let isPaused = false;
+      let isPaused = false;
 
-//     const handleMove = (e) => {
-//       if (!isPaused) {
-//         xTo(e.clientX);
-//         yTo(e.clientY);
-//       }
-//     };
+      const handleMove = (e) => {
+        if (!isPaused) {
+          xTo(e.clientX);
+          yTo(e.clientY);
+        }
+      };
 
-//     const handleEnter = () => {
-//       if (!isPaused)
-//         gsap.to(ball, { scale: 1, duration: 0.5, ease: "expo.out" });
-//     };
+      const handleEnter = () => {
+        if (!isPaused)
+          gsap.to(ball, { scale: 1, duration: 0.5, ease: "expo.out" });
+      };
 
-//     const handleLeave = () => {
-//       gsap.to(ball, { scale: 0, duration: 0.5, ease: "expo.out" });
-//     };
+      const handleLeave = () => {
+        gsap.to(ball, { scale: 0, duration: 0.5, ease: "expo.out" });
+      };
 
-//     section.addEventListener("mousemove", handleMove);
-//     section.addEventListener("mouseenter", handleEnter);
-//     section.addEventListener("mouseleave", handleLeave);
+      section.addEventListener("mousemove", handleMove);
+      section.addEventListener("mouseenter", handleEnter);
+      section.addEventListener("mouseleave", handleLeave);
 
-//     // ✅ Reusable handlers
-//     const handlePauseEnter = () => {
-//       isPaused = true;
-//       gsap.to(ball, { opacity: 0, scale: 0.5, duration: 0.3 });
-//     };
+      // Pause when hovering buttons / links
+      const pauseElements = section.querySelectorAll(".btn, .scroll-down, iframe, .play-btn");
+      const handlePauseEnter = () => {
+        isPaused = true;
+        gsap.to(ball, { opacity: 0, scale: 0.5, duration: 0.3 });
+      };
+      const handlePauseLeave = () => {
+        isPaused = false;
+        gsap.to(ball, { opacity: 1, scale: 1, duration: 0.3 });
+      };
 
-//     const handlePauseLeave = () => {
-//       isPaused = false;
-//       gsap.to(ball, { opacity: 1, scale: 1, duration: 0.3 });
-//     };
-
-//     // 🎯 Target both buttons and scroll-down link
-//     const pauseElements = section.querySelectorAll(".btn, .scroll-down");
-
-//     pauseElements.forEach((el) => {
-//       el.addEventListener("mouseenter", handlePauseEnter);
-//       el.addEventListener("mouseleave", handlePauseLeave);
-//     });
-
-//     cleanupFns.push(() => {
-//       section.removeEventListener("mousemove", handleMove);
-//       section.removeEventListener("mouseenter", handleEnter);
-//       section.removeEventListener("mouseleave", handleLeave);
-//       pauseElements.forEach((el) => {
-//         el.removeEventListener("mouseenter", handlePauseEnter);
-//         el.removeEventListener("mouseleave", handlePauseLeave);
-//       });
-//     });
-//   });
-
-//   return () => cleanupFns.forEach((fn) => fn());
-// }, []);
-
-useEffect(() => {
-  const sections = [
-    { selector: ".home-banner", ballClass: ".banner-ball" },
-    { selector: ".information-section", ballClass: ".info-ball" },
-    { selector: ".video-section .vdo-dec-blk", ballClass: ".video-ball" }
-  ];
-
-  const cleanupFns = [];
-
-  sections.forEach(({ selector, ballClass }) => {
-    const section = document.querySelector(selector);
-    const ball = document.querySelector(ballClass);
-
-    if (!section || !ball) return;
-
-    gsap.set(ball, { xPercent: -50, yPercent: -50 });
-
-    const xTo = gsap.quickTo(ball, "x", { duration: 0.5, ease: "expo.out" });
-    const yTo = gsap.quickTo(ball, "y", { duration: 0.5, ease: "expo.out" });
-
-    let isPaused = false;
-
-    const handleMove = (e) => {
-      if (!isPaused) {
-        xTo(e.clientX);
-        yTo(e.clientY);
-      }
-    };
-
-    const handleEnter = () => {
-      if (!isPaused)
-        gsap.to(ball, { scale: 1, duration: 0.5, ease: "expo.out" });
-    };
-
-    const handleLeave = () => {
-      gsap.to(ball, { scale: 0, duration: 0.5, ease: "expo.out" });
-    };
-
-    section.addEventListener("mousemove", handleMove);
-    section.addEventListener("mouseenter", handleEnter);
-    section.addEventListener("mouseleave", handleLeave);
-
-    // Pause when hovering buttons / links
-    const pauseElements = section.querySelectorAll(".btn, .scroll-down, iframe, .play-btn");
-    const handlePauseEnter = () => {
-      isPaused = true;
-      gsap.to(ball, { opacity: 0, scale: 0.5, duration: 0.3 });
-    };
-    const handlePauseLeave = () => {
-      isPaused = false;
-      gsap.to(ball, { opacity: 1, scale: 1, duration: 0.3 });
-    };
-
-    pauseElements.forEach((el) => {
-      el.addEventListener("mouseenter", handlePauseEnter);
-      el.addEventListener("mouseleave", handlePauseLeave);
-    });
-
-    // 👉 If this is the video ball, add click-to-play behavior
-    if (ballClass === ".video-ball") {
-      const videoBall = ball;
-      videoBall.addEventListener("click", () => {
-        const playButton = document.querySelector(".video-thumbnail");
-        if (playButton) playButton.click(); // trigger the React state change
-      });
-      cleanupFns.push(() => videoBall.removeEventListener("click", () => {}));
-    }
-
-    cleanupFns.push(() => {
-      section.removeEventListener("mousemove", handleMove);
-      section.removeEventListener("mouseenter", handleEnter);
-      section.removeEventListener("mouseleave", handleLeave);
       pauseElements.forEach((el) => {
-        el.removeEventListener("mouseenter", handlePauseEnter);
-        el.removeEventListener("mouseleave", handlePauseLeave);
+        el.addEventListener("mouseenter", handlePauseEnter);
+        el.addEventListener("mouseleave", handlePauseLeave);
+      });
+
+      // 👉 If this is the video ball, add click-to-play behavior
+      if (ballClass === ".video-ball") {
+        const videoBall = ball;
+        videoBall.addEventListener("click", () => {
+          const playButton = document.querySelector(".video-thumbnail");
+          if (playButton) playButton.click(); // trigger the React state change
+        });
+        cleanupFns.push(() => videoBall.removeEventListener("click", () => {}));
+      }
+
+      cleanupFns.push(() => {
+        section.removeEventListener("mousemove", handleMove);
+        section.removeEventListener("mouseenter", handleEnter);
+        section.removeEventListener("mouseleave", handleLeave);
+        pauseElements.forEach((el) => {
+          el.removeEventListener("mouseenter", handlePauseEnter);
+          el.removeEventListener("mouseleave", handlePauseLeave);
+        });
       });
     });
-  });
 
-  return () => cleanupFns.forEach((fn) => fn());
-}, []);
-
+    return () => cleanupFns.forEach((fn) => fn());
+  }, []);
 
 
  // 👇 Scroll-based open logic
-useEffect(() => {
-  const options = {
-    root: null,
-    rootMargin: "0px 0px -20% 0px",
-    threshold: 0.5,
-  };
+  useEffect(() => {
+    const options = {
+      root: null,
+      rootMargin: "0px 0px -20% 0px",
+      threshold: 0.5,
+    };
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        const index = Number(entry.target.dataset.index);
-        setActiveIndex(index);
-      }
-    });
-  }, options);
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const index = Number(entry.target.dataset.index);
+          setActiveIndex(index);
+        }
+      });
+    }, options);
 
-  itemRefs.current.forEach((el) => el && observer.observe(el));
+    itemRefs.current.forEach((el) => el && observer.observe(el));
 
-  return () => {
-    itemRefs.current.forEach((el) => el && observer.unobserve(el));
-  };
-}, []);
+    return () => {
+      itemRefs.current.forEach((el) => el && observer.unobserve(el));
+    };
+  }, []);
 
 
 
@@ -369,7 +341,7 @@ useEffect(() => {
       <Header/>
 
       {/* Community section */}
-      <section className="community-section" id="next-section">
+      {/* <section className="community-section" id="next-section" ref={sectionRef}>
         <div className="outer">
           <div className="container">
             <div className="community-container">
@@ -379,13 +351,16 @@ useEffect(() => {
 
                 <div className="community-stats">
                   <div className="stat-item">
-                    <img
-                      src="/assets/homepage/area.svg"
-                      alt="Total Land Area"
-                    />
+                    <img src="/assets/homepage/area.svg" alt="Total Land Area" />
                     <div>
                       <h4>
-                        8 <span>Million Sq. Ft.</span>
+                        <span
+                          ref={(el) => (countersRef.current[0] = el)}
+                          data-value="8"
+                          data-suffix=" Million Sq. Ft."
+                        >
+                          0
+                        </span>
                       </h4>
                       <p>Total Land Area</p>
                     </div>
@@ -397,7 +372,15 @@ useEffect(() => {
                       alt="Residential Units"
                     />
                     <div>
-                      <h4>12000 +</h4>
+                      <h4>
+                        <span
+                          ref={(el) => (countersRef.current[1] = el)}
+                          data-value="12000"
+                          data-suffix="+"
+                        >
+                          0
+                        </span>
+                      </h4>
                       <p>Residential Units</p>
                     </div>
                   </div>
@@ -405,7 +388,15 @@ useEffect(() => {
                   <div className="stat-item">
                     <img src="/assets/homepage/sun.svg" alt="Open Spaces" />
                     <div>
-                      <h4>39 %</h4>
+                      <h4>
+                        <span
+                          ref={(el) => (countersRef.current[2] = el)}
+                          data-value="39"
+                          data-suffix="%"
+                        >
+                          0
+                        </span>
+                      </h4>
                       <p>Open Spaces</p>
                     </div>
                   </div>
@@ -425,27 +416,99 @@ useEffect(() => {
                   success of Sobha Hartland, redefining luxury living across 8
                   million square feet. Located near its predecessor, this
                   exceptional community seamlessly blends urban convenience with
-                  natural beauty, offering residents easy access to the city’s
-                  top malls, business districts, and attractions, while
-                  providing a peaceful escape in a vibrant, centrally connected
-                  sanctuary.
+                  natural beauty.
                 </p>
 
                 <p>
                   Sobha Hartland II is a private, gated community where nature’s
                   splendor thrives, offering an extraordinary lifestyle that
-                  transcends the ordinary and immerses you in unparalleled
-                  luxury.
+                  transcends the ordinary and immerses you in unparalleled luxury.
                 </p>
-                  <AnimatedButton
-                    label="Connect Us"
-                    onClick={() => console.log("Button clicked")}
-                  />
+
+                <AnimatedButton
+                  label="Connect Us"
+                  onClick={() => console.log("Button clicked")}
+                />
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
+      <section className="community-section" id="next-section" ref={sectionRef}>
+  <div className="outer">
+    <div className="container">
+      <div className="community-container">
+        {/* Left section */}
+        <div className="community-left">
+          <h3>Dubai’s most</h3>
+          <h2>Premium Master Community</h2>
+
+          <div className="community-stats">
+<div className="stat-item">
+  <img src="/assets/homepage/area.svg" alt="Total Land Area" />
+  <div className="stat-content">
+    <div className="stat-top">
+      <h4 ref={(el) => (countersRef.current[0] = el)} data-value="8">0</h4>
+      <span className="millio">Million Sq. Ft.</span>
+    </div>
+    <p>Total Land Area</p>
+  </div>
+</div>
+
+<div className="stat-item">
+  <img src="/assets/homepage/building.svg" alt="Residential Units" />
+  <div className="stat-content">
+    <div className="stat-top">
+      <h4 ref={(el) => (countersRef.current[1] = el)} data-value="12000">0</h4>
+      <span>+</span>
+    </div>
+    <p>Residential Units</p>
+  </div>
+</div>
+
+<div className="stat-item">
+  <img src="/assets/homepage/sun.svg" alt="Open Spaces" />
+  <div className="stat-content">
+    <div className="stat-top">
+      <h4 ref={(el) => (countersRef.current[2] = el)} data-value="39">0</h4>
+      <span>%</span>
+    </div>
+    <p>Open Spaces</p>
+  </div>
+</div>
+
+</div>
+
+        </div>
+
+        {/* Middle image */}
+        <div className="community-image">
+          <img src="/assets/homepage/community.png" alt="Sobha Hartland II" />
+        </div>
+
+        {/* Right section */}
+        <div className="community-right">
+          <p>
+            Sobha Hartland II marks the next chapter in the remarkable success of Sobha Hartland,
+            redefining luxury living across 8 million square feet. Located near its predecessor,
+            this exceptional community seamlessly blends urban convenience with natural beauty.
+          </p>
+          <p>
+            Sobha Hartland II is a private, gated community where nature’s splendor thrives,
+            offering an extraordinary lifestyle that transcends the ordinary and immerses you in
+            unparalleled luxury.
+          </p>
+
+          <AnimatedButton
+            label="Connect Us"
+            onClick={() => console.log("Button clicked")}
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
       {/* Dubai Section */}
     <section class="dubai-centre">
@@ -602,47 +665,47 @@ useEffect(() => {
     </section> */}
 
     <section className="lifestyle-section">
-  <div className="outer">
-    <div className="container">
-      {sections.map((item, index) => (
-        <div
-          key={index}
-          data-index={index}
-          ref={(el) => (itemRefs.current[index] = el)}
-          className={`lifestyle-item ${activeIndex === index ? "active" : ""}`}
-          onClick={() => setActiveIndex(index)} // 👈 Added click handler
-        >
-          <div className="lifestyle-header">
-            <div className="left">
-              <img src={item.icon} alt={item.label} />
-              <span>{item.label}</span>
-            </div>
-            <h2>{item.title}</h2>
-          </div>
+      <div className="outer">
+        <div className="container">
+          {sections.map((item, index) => (
+            <div
+              key={index}
+              data-index={index}
+              ref={(el) => (itemRefs.current[index] = el)}
+              className={`lifestyle-item ${activeIndex === index ? "active" : ""}`}
+              onClick={() => setActiveIndex(index)} // 👈 Added click handler
+            >
+              <div className="lifestyle-header">
+                <div className="left">
+                  <img src={item.icon} alt={item.label} />
+                  <span>{item.label}</span>
+                </div>
+                <h2>{item.title}</h2>
+              </div>
 
-          <div
-            className="lifestyle-content"
-            style={{
-              maxHeight:
-                activeIndex === index
-                  ? `${itemRefs.current[index]?.querySelector(".lifestyle-content").scrollHeight}px`
-                  : "0px",
-            }}
-          >
-            <div className="image-blk">
-              <img src={item.image} alt={item.label} />
+              <div
+                className="lifestyle-content"
+                style={{
+                  maxHeight:
+                    activeIndex === index
+                      ? `${itemRefs.current[index]?.querySelector(".lifestyle-content").scrollHeight}px`
+                      : "0px",
+                }}
+              >
+                <div className="image-blk">
+                  <img src={item.image} alt={item.label} />
+                </div>
+                <div className="text-blk">
+                  {item.text.map((p, i) => (
+                    <p key={i}>{p}</p>
+                  ))}
+                </div>
+              </div>
             </div>
-            <div className="text-blk">
-              {item.text.map((p, i) => (
-                <p key={i}>{p}</p>
-              ))}
-            </div>
-          </div>
+          ))}
         </div>
-      ))}
-    </div>
-  </div>
-</section>
+      </div>
+    </section>
 
 
       {/* Luxury slider Section */}
