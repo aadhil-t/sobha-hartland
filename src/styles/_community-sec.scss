@@ -1,175 +1,4 @@
-// @import "../styles/variables.scss";
-
-// .community-section {
-//   padding: 8rem 0 15.9rem 0;
-//   @media (max-width: 768px) {
-//     padding: 8rem 0 5rem 0;
-//   }
-//   .community-container {
-//     display: grid;
-//     grid-template-columns: 1fr 1.2fr 1fr;
-//     align-items: end;
-//     gap: 4rem;
-//     position: relative;
-
-//     @media (max-width: 1024px) {
-//       grid-template-columns: 1fr;
-//       text-align: center;
-//       justify-items: center;
-//     }
-//   }
-
-//   .community-container::before {
-//     content: "";
-//     position: absolute;
-//     top: -165px;
-//     right: 240px;
-//     width: 100%;
-//     max-width: 516px;
-//     height: 515px;
-//     background-image: url('../../public/assets/homepage/bg-rangoli.png'); /* adjust path */
-//     background-position: center;
-//     background-repeat: no-repeat;
-//     z-index: -1;
-//   }
-
-//   /* ======================== */
-//   /* Left side text + stats   */
-//   /* ======================== */
-//   .community-left {
-//     h3 {
-//       font-family: "DM Sans";
-//       font-weight: 200;
-//       font-size: 50px;
-//       line-height: 40px;
-//       color: #222;
-//       margin: 0;
-//       padding-bottom: 1.6rem;
-//     }
-
-//     h2 {
-//       font-weight: 300;
-//       font-size: 60px;
-//       line-height: 65px;
-//       color: #111;
-//       padding-bottom: 4.5rem;
-
-//       @media (max-width: 600px) {
-//         font-size: 3.6rem;
-//       }
-//     }
-
-//     .community-stats {
-//       display: flex;
-//       flex-direction: column;
-//       gap: 2.4rem;
-
-//       @media (max-width: 1024px) {
-//         align-items: center;
-//       }
-
-//       .stat-item {
-//         display: flex;
-//         align-items: center;
-//         gap: 2.5rem;
-//         padding-bottom: 2.4rem;
-//         border-bottom: $border; // light divider
-
-       
-
-//         img {
-//           width: 56px;
-//           height: 65px;
-//         }
-
-//         h4 {
-//           font-weight: 300;
-//           font-style: Display Light;
-//           font-size: 40px;
-//           letter-spacing: 0%;
-//           color: $black;
-
-//           span {
-//             font-family: "DM Sans";
-//             font-weight: 200;
-//             font-style: ExtraLight;
-//             font-size: 20px;
-//             line-height: 32px;
-//             letter-spacing: 0%;;
-//           }
-//         }
-
-//         p {
-//           font-family: "DM Sans";
-//           font-weight: 200;
-//           font-style: ExtraLight;
-//           font-size: 20px;
-//           line-height: 32px;
-//           color: $text-color-3;
-//           margin: 0;
-//         }
-//       }
-//     }
-//   }
-
-//   /* ======================== */
-//   /* Middle image section     */
-//   /* ======================== */
-//   .community-image {
-//     img {
-//       width: 100%;
-//       object-fit: cover;
-//       display: block;
-//     }
-//   }
-
-//   /* ======================== */
-//   /* Right side text + button */
-//   /* ======================== */
-//   .community-right {
-//     p {
-//       font-family: "DM Sans";
-//       font-weight: 300;
-//       font-style: Light;
-//       font-size: 18px;
-//       line-height: 30px;
-//       letter-spacing: 0%;
-//       color: $text-color-3;
-//     }
-
-//     .btn-connect {
-//       display: inline-flex;
-//       align-items: center;
-//       gap: 0.8rem;
-//       background-color: transparent;
-//       border: 1px solid #111;
-//       color: #111;
-//       text-decoration: none;
-//       padding: 0.8rem 1.6rem;
-//       font-size: 1.6rem;
-//       font-weight: 500;
-//       transition: all 0.3s ease;
-
-//       img {
-//         width: 18px;
-//         height: 18px;
-//       }
-
-//       &:hover {
-//         background-color: #111;
-//         color: #fff;
-
-//         img {
-//           filter: brightness(0) invert(1);
-//         }
-//       }
-//     }
-//   }
-// }
-
-
 @import "../styles/variables.scss";
-
 
 .community-section {
   padding: 8rem 0 15.9rem 0;
@@ -202,7 +31,22 @@
       background-image: url("../../public/assets/homepage/bg-rangoli.png");
       background-position: center;
       background-repeat: no-repeat;
+      background-size: contain;
       z-index: -1;
+
+      /* Rotation Animation */
+      animation: rotateRangoli 40s linear infinite;
+      transform-origin: center center;
+    }
+  }
+
+  /* Smooth rotation keyframes */
+  @keyframes rotateRangoli {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
     }
   }
 
@@ -231,7 +75,7 @@
 
       @media (max-width: 600px) {
         font-size: 2.6rem;
-        line-height: 2.4rem
+        line-height: 2.4rem;
       }
     }
 
@@ -268,11 +112,8 @@
 
             h4 {
               font-weight: 300;
-              font-style: Display Light;
               font-size: 40px;
               line-height: 45px;
-              letter-spacing: 0%;
-              text-align: center;
               color: $black;
               margin: 0;
             }
@@ -281,15 +122,13 @@
               font-weight: 200;
               font-size: 40px;
               line-height: 45px;
-              letter-spacing: 0%;
               color: $text-color-3;
-              &.millio{
+
+              &.millio {
                 font-family: "DM Sans";
                 font-weight: 200;
-                font-style: ExtraLight;
                 font-size: 20px;
                 line-height: 100%;
-                letter-spacing: 0%;
               }
             }
           }
