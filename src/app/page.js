@@ -26,6 +26,9 @@ import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
 gsap.registerPlugin(ScrollTrigger);
+// AOS //
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 export default function Home() {
 
@@ -73,6 +76,15 @@ export default function Home() {
       return () => ctx.revert();
   }, []);
 
+  // Aos effect //
+    useEffect(() => {
+    // Initialize AOS once
+    AOS.init({
+      duration: 1200,
+      once: false,
+      mirror: false,
+    });
+  }, []);
 
   // Mouse follow effect //
   // useEffect(() => {
@@ -368,7 +380,7 @@ export default function Home() {
 
         <div className="bg-image">
           <div className="container">
-            <div className="head-content-blk">
+            <div className="head-content-blk" data-aos="fade-up">
               <img
                 src="/assets/homepage/sobha-hartland.svg"
                 alt="sobha-hartland"
@@ -381,7 +393,7 @@ export default function Home() {
             </div>
 
             <div className="media-btn-blk">
-              <Link href="/callback" className="btn primary">
+              <Link href="/callback" className="btn primary" data-aos="fade-left">
                 Call Back
                 <img
                   src="/assets/homepage/call.svg"
@@ -390,7 +402,7 @@ export default function Home() {
                 />
               </Link>
 
-              <Link href="/whatsapp" className="btn green">
+              <Link href="/whatsapp" className="btn green" data-aos="fade-left">
                 WhatsApp
                 <img
                   src="/assets/homepage/whatsapp.svg"
@@ -403,7 +415,7 @@ export default function Home() {
         </div>
 
         {/* 👇 Scroll-down button added here */}
-        <a href="#next-section" className="scroll-down">
+        <a href="#next-section" className="scroll-down" >
           <span></span>
           Scroll Down
         </a>
@@ -413,88 +425,69 @@ export default function Home() {
       <Header/>
 
       {/* Community section */}
-      {/* <section className="community-section" id="next-section" ref={sectionRef}>
+      <section className="community-section" id="next-section" ref={sectionRef}>
         <div className="outer">
           <div className="container">
             <div className="community-container">
+              {/* Left section */}
               <div className="community-left">
-                <h3>Dubai’s most</h3>
-                <h2>Premium Master Community</h2>
+                <h3 data-aos="fade-up">Dubai’s most</h3>
+                <h2 data-aos="fade-up">Premium Master Community</h2>
 
                 <div className="community-stats">
-                  <div className="stat-item">
-                    <img src="/assets/homepage/area.svg" alt="Total Land Area" />
-                    <div>
-                      <h4>
-                        <span
-                          ref={(el) => (countersRef.current[0] = el)}
-                          data-value="8"
-                          data-suffix=" Million Sq. Ft."
-                        >
-                          0
-                        </span>
-                      </h4>
-                      <p>Total Land Area</p>
+                <div className="stat-item" data-aos="fade-up">
+                  <img src="/assets/homepage/area.svg" alt="Total Land Area" />
+                  <div className="stat-content">
+                    <div className="stat-top">
+                      <h4 ref={(el) => (countersRef.current[0] = el)} data-value="8">0</h4>
+                      <span className="millio">Million Sq. Ft.</span>
                     </div>
-                  </div>
-
-                  <div className="stat-item">
-                    <img
-                      src="/assets/homepage/building.svg"
-                      alt="Residential Units"
-                    />
-                    <div>
-                      <h4>
-                        <span
-                          ref={(el) => (countersRef.current[1] = el)}
-                          data-value="12000"
-                          data-suffix="+"
-                        >
-                          0
-                        </span>
-                      </h4>
-                      <p>Residential Units</p>
-                    </div>
-                  </div>
-
-                  <div className="stat-item">
-                    <img src="/assets/homepage/sun.svg" alt="Open Spaces" />
-                    <div>
-                      <h4>
-                        <span
-                          ref={(el) => (countersRef.current[2] = el)}
-                          data-value="39"
-                          data-suffix="%"
-                        >
-                          0
-                        </span>
-                      </h4>
-                      <p>Open Spaces</p>
-                    </div>
+                    <p>Total Land Area</p>
                   </div>
                 </div>
+
+                <div className="stat-item" data-aos="fade-up">
+                  <img src="/assets/homepage/building.svg" alt="Residential Units" />
+                  <div className="stat-content">
+                    <div className="stat-top">
+                      <h4 ref={(el) => (countersRef.current[1] = el)} data-value="12000">0</h4>
+                      <span>+</span>
+                    </div>
+                    <p>Residential Units</p>
+                  </div>
+                </div>
+
+                <div className="stat-item" data-aos="fade-up">
+                  <img src="/assets/homepage/sun.svg" alt="Open Spaces" />
+                  <div className="stat-content">
+                    <div className="stat-top">
+                      <h4 ref={(el) => (countersRef.current[2] = el)} data-value="39">0</h4>
+                      <span>%</span>
+                    </div>
+                    <p>Open Spaces</p>
+                  </div>
+                </div>
+
+                </div>
+
               </div>
 
-              <div className="community-image">
-                <img
-                  src="/assets/homepage/community.png"
-                  alt="Sobha Hartland II"
-                />
+              {/* Middle image */}
+              <div className="community-image" data-aos="fade-up">
+                <img src="/assets/homepage/community.png" alt="Sobha Hartland II" />
               </div>
 
-              <div className="community-right">
+              {/* Right section */}
+              <div className="community-right" data-aos="fade-up">
                 <p>
-                  Sobha Hartland II marks the next chapter in the remarkable
-                  success of Sobha Hartland, redefining luxury living across 8
-                  million square feet. Located near its predecessor, this
-                  exceptional community seamlessly blends urban convenience with
-                  natural beauty.
+                  Sobha Hartland II marks the next chapter in the remarkable success of Sobha Hartland,
+                  redefining luxury living across 8 million square feet. Located near its predecessor,
+                  this exceptional community seamlessly blends urban convenience with natural beauty.
                 </p>
-
                 <p>
-                  Sobha Hartland II is a private, gated community where nature’s
-                  splendor thrives, offering an extraordinary lifestyle that
-                  transcends the ordinary and immerses you in unparalleled luxury.
+                  Sobha Hartland II is a private, gated community where nature’s splendor thrives,
+                  offering an extraordinary lifestyle that transcends the ordinary and immerses you in
+                  unparalleled luxury.
                 </p>
 
                 <AnimatedButton
@@ -505,130 +498,52 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section> */}
-      <section className="community-section" id="next-section" ref={sectionRef}>
-  <div className="outer">
-    <div className="container">
-      <div className="community-container">
-        {/* Left section */}
-        <div className="community-left">
-          <h3>Dubai’s most</h3>
-          <h2>Premium Master Community</h2>
-
-          <div className="community-stats">
-<div className="stat-item">
-  <img src="/assets/homepage/area.svg" alt="Total Land Area" />
-  <div className="stat-content">
-    <div className="stat-top">
-      <h4 ref={(el) => (countersRef.current[0] = el)} data-value="8">0</h4>
-      <span className="millio">Million Sq. Ft.</span>
-    </div>
-    <p>Total Land Area</p>
-  </div>
-</div>
-
-<div className="stat-item">
-  <img src="/assets/homepage/building.svg" alt="Residential Units" />
-  <div className="stat-content">
-    <div className="stat-top">
-      <h4 ref={(el) => (countersRef.current[1] = el)} data-value="12000">0</h4>
-      <span>+</span>
-    </div>
-    <p>Residential Units</p>
-  </div>
-</div>
-
-<div className="stat-item">
-  <img src="/assets/homepage/sun.svg" alt="Open Spaces" />
-  <div className="stat-content">
-    <div className="stat-top">
-      <h4 ref={(el) => (countersRef.current[2] = el)} data-value="39">0</h4>
-      <span>%</span>
-    </div>
-    <p>Open Spaces</p>
-  </div>
-</div>
-
-</div>
-
-        </div>
-
-        {/* Middle image */}
-        <div className="community-image">
-          <img src="/assets/homepage/community.png" alt="Sobha Hartland II" />
-        </div>
-
-        {/* Right section */}
-        <div className="community-right">
-          <p>
-            Sobha Hartland II marks the next chapter in the remarkable success of Sobha Hartland,
-            redefining luxury living across 8 million square feet. Located near its predecessor,
-            this exceptional community seamlessly blends urban convenience with natural beauty.
-          </p>
-          <p>
-            Sobha Hartland II is a private, gated community where nature’s splendor thrives,
-            offering an extraordinary lifestyle that transcends the ordinary and immerses you in
-            unparalleled luxury.
-          </p>
-
-          <AnimatedButton
-            label="Connect Us"
-            onClick={() => console.log("Button clicked")}
-          />
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+      </section>
 
 
       {/* Dubai Section */}
-    <section class="dubai-centre">
-      <div class="container">
-        <div class="hero-image">
-          <img src="/assets/homepage/dubai.png" alt="Dubai skyline at night" />
-          <div class="hero-text">
-            <h2>Right in the <span>Centre of Dubai</span></h2>
+      <section class="dubai-centre">
+        <div class="container">
+          <div class="hero-image" data-aos="fade-up">
+            <img src="/assets/homepage/dubai.png" alt="Dubai skyline at night" />
+            <div class="hero-text">
+              <h2>Right in the <span>Centre of Dubai</span></h2>
+            </div>
           </div>
         </div>
-      </div>
 
-        <div class="info-section">
-          <div className="container">
-          <div class="locations-wrapper">
-            <ul class="locations top-row">
-              <li>
-                <h3>Dubai Design District</h3>
-                <p>8 minutes away – 6.7 km</p>
-              </li>
-              <li>
-                <h3>Ras Al Khor Wildlife Sanctuary</h3>
-                <p>5 minutes away – 6 km</p>
-              </li>
-            </ul>
+          <div class="info-section">
+            <div className="container">
+            <div class="locations-wrapper">
+              <ul class="locations top-row">
+                <li data-aos="fade-up">
+                  <h3>Dubai Design District</h3>
+                  <p>8 minutes away – 6.7 km</p>
+                </li>
+                <li data-aos="fade-up">
+                  <h3>Ras Al Khor Wildlife Sanctuary</h3>
+                  <p>5 minutes away – 6 km</p>
+                </li>
+              </ul>
 
-            <ul class="locations bottom-row">
-              <li>
-                <h3>Dubai Mall</h3>
-                <p>13 minutes away – 8.9 km</p>
-              </li>
-              <li>
-                <h3>Burj Al Arab</h3>
-                <p>28 minutes away – 24 km</p>
-              </li>
-              <li>
-                <h3>Downtown Dubai</h3>
-                <p>10 minutes away – 8.7 km</p>
-              </li>
-            </ul>
+              <ul class="locations bottom-row">
+                <li data-aos="fade-up">
+                  <h3>Dubai Mall</h3>
+                  <p>13 minutes away – 8.9 km</p>
+                </li>
+                <li data-aos="fade-up">
+                  <h3>Burj Al Arab</h3>
+                  <p>28 minutes away – 24 km</p>
+                </li>
+                <li data-aos="fade-up">
+                  <h3>Downtown Dubai</h3>
+                  <p>10 minutes away – 8.7 km</p>
+                </li>
+              </ul>
+            </div>
+            </div>
           </div>
-          </div>
-        </div>
-    </section>
-
-    {/* white Section */}
-    {/* <div  className="white-black-sec" style={{background: "white", height: "740px"}}>
-    </div> */}
+      </section>
 
     {/* Video Section */}
       <section className="video-section">
@@ -638,13 +553,13 @@ export default function Home() {
           <div className="container">
             {/* Heading */}
             <div className="video-blk">
-              <h2 className="video-heading">
+              <h2 className="video-heading" data-aos="fade-up">
                 Step Into <span>A World Of Sophistication</span>
               </h2>
 
               {/* Video Block */}
               <div className="vdo-dec-blk">
-                <div className="video-wrapper">
+                <div className="video-wrapper" data-aos="fade-up">
                   {!isPlaying ? (
                     <>
                      <img
@@ -672,7 +587,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="description-blk">
+          <div className="description-blk" >
             <div className="container">
               <div className="outer">
                 <div className="video-description">
@@ -694,48 +609,6 @@ export default function Home() {
 
 
       {/* lifestyle Accordian Section */}
-    {/* <section className="lifestyle-section">
-      <div className="outer">
-        <div className="container">
-          {sections.map((item, index) => (
-            <div
-              key={index}
-              data-index={index}
-              ref={(el) => (itemRefs.current[index] = el)}
-              className={`lifestyle-item ${activeIndex === index ? "active" : ""}`}
-            >
-              <div className="lifestyle-header">
-                <div className="left">
-                  <img src={item.icon} alt={item.label} />
-                  <span>{item.label}</span>
-                </div>
-                <h2>{item.title}</h2>
-              </div>
-
-              <div
-                className="lifestyle-content"
-                style={{
-                  maxHeight:
-                    activeIndex === index
-                      ? `${itemRefs.current[index]?.querySelector(".lifestyle-content").scrollHeight}px`
-                      : "0px",
-                }}
-              >
-                <div className="image-blk">
-                  <img src={item.image} alt={item.label} />
-                </div>
-                <div className="text-blk">
-                  {item.text.map((p, i) => (
-                    <p key={i}>{p}</p>
-                  ))}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section> */}
-
     <section className="lifestyle-section">
       <div className="outer">
         <div className="container">
@@ -784,7 +657,7 @@ export default function Home() {
       <div className="luxury-section">
       <div className="luxury-slider">
       <div className="container">
-        <div className="top-swip-head">
+        <div className="top-swip-head" data-aos="fade-up">
           <h4>In the heart of</h4>
           <h3>Luxury</h3>
         </div>
@@ -796,6 +669,7 @@ export default function Home() {
           navigation={true}
           loop={true}
           className="luxury-swiper"
+          data-aos="fade-up"
           Navigationavigation={{
             prevEl: ".luxury-prev",
             nextEl: ".luxury-next",
@@ -812,8 +686,8 @@ export default function Home() {
                 <img src="/assets/homepage/swip1.png" alt="Pool Area" />
               </div>
               <div className="luxury-slide-content">
-                <h4>Elegant Pool Area</h4>
-                <p>
+                <h4 data-aos="fade-left">Elegant Pool Area</h4>
+                <p data-aos="fade-left">
                   Clique nas numerações do mapa para visualizar as áreas comuns.
                 </p>
               </div>
@@ -826,8 +700,8 @@ export default function Home() {
                 <img src="/assets/homepage/swip1.png" alt="Grand Lobby" />
               </div>
               <div className="luxury-slide-content">
-                <h4>Grand Lobby</h4>
-                <p>Clique nas numerações do mapa para visualizar as áreas comuns.</p>
+                <h4 data-aos="fade-left">Grand Lobby</h4>
+                <p data-aos="fade-left">Clique nas numerações do mapa para visualizar as áreas comuns.</p>
               </div>
             </div>
           </SwiperSlide>
@@ -838,8 +712,8 @@ export default function Home() {
                 <img src="/assets/homepage/swip1.png" alt="Modern Lounge" />
               </div>
               <div className="luxury-slide-content">
-                <h4>Modern Lounge</h4>
-                <p>Clique nas numerações do mapa para visualizar as áreas comuns.</p>
+                <h4 data-aos="fade-left">Modern Lounge</h4>
+                <p data-aos="fade-left">Clique nas numerações do mapa para visualizar as áreas comuns.</p>
               </div>
             </div>
           </SwiperSlide>
@@ -850,8 +724,8 @@ export default function Home() {
                 <img src="/assets/homepage/swip1.png" alt="Exclusive Bar" />
               </div>
               <div className="luxury-slide-content">
-                <h4>Exclusive Bar</h4>
-                <p>
+                <h4 data-aos="fade-left">Exclusive Bar</h4>
+                <p data-aos="fade-left">
                   Clique nas numerações do mapa para visualizar as áreas comuns.
                 </p>
               </div>
@@ -866,7 +740,7 @@ export default function Home() {
       <section className="faq-section">
           <div className="container">
         <div className="outer">
-            <div className="faq-left">
+            <div className="faq-left" data-aos="fade-up">
               <p className="faq-subtitle">Got Questions?</p>
               <h2 className="faq-title">
                 We've Got <br />
@@ -874,10 +748,10 @@ export default function Home() {
               </h2>
             </div>
 
-            <div className="faq-right">
+            <div className="faq-right" data-aos="fade-up">
               {faqs.map((faq, index) => (
                 <div
-                  className={`faq-item ${
+                  className={`faq-item  ${
                     activeIndex === index ? "active" : ""
                   }`}
                   key={index}
@@ -919,7 +793,7 @@ export default function Home() {
           </div> 
         <div className="outer">
           <div className="container">
-            <h2 className="info-title">Need more informations?</h2>
+            <h2 data-aos="fade-up" className="info-title">Need more informations?</h2>
           </div>
         </div>
       </div>

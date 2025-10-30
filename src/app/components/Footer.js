@@ -17,6 +17,7 @@ export default function Footer() {
                   href="https://www.facebook.com/"
                   target="_blank"
                   rel="noopener noreferrer"
+                  
                 >
                   <img
                     src="/assets/homepage/fb.svg"
