@@ -87,87 +87,87 @@ export default function Home() {
   }, []);
 
   // Mouse follow effect //
-  // useEffect(() => {
-  //   const sections = [
-  //     { selector: ".home-banner", ballClass: ".banner-ball" },
-  //     { selector: ".information-section", ballClass: ".info-ball" },
-  //     { selector: ".video-section .vdo-dec-blk", ballClass: ".video-ball" }
-  //   ];
+  useEffect(() => {
+    const sections = [
+      { selector: ".home-banner", ballClass: ".banner-ball" },
+      { selector: ".information-section", ballClass: ".info-ball" },
+      { selector: ".video-section .vdo-dec-blk", ballClass: ".video-ball" }
+    ];
 
-  //   const cleanupFns = [];
+    const cleanupFns = [];
 
-  //   sections.forEach(({ selector, ballClass }) => {
-  //     const section = document.querySelector(selector);
-  //     const ball = document.querySelector(ballClass);
+    sections.forEach(({ selector, ballClass }) => {
+      const section = document.querySelector(selector);
+      const ball = document.querySelector(ballClass);
 
-  //     if (!section || !ball) return;
+      if (!section || !ball) return;
 
-  //     gsap.set(ball, { xPercent: -50, yPercent: -50 });
+      gsap.set(ball, { xPercent: -50, yPercent: -50 });
 
-  //     const xTo = gsap.quickTo(ball, "x", { duration: 0.5, ease: "expo.out" });
-  //     const yTo = gsap.quickTo(ball, "y", { duration: 0.5, ease: "expo.out" });
+      const xTo = gsap.quickTo(ball, "x", { duration: 0.5, ease: "expo.out" });
+      const yTo = gsap.quickTo(ball, "y", { duration: 0.5, ease: "expo.out" });
 
-  //     let isPaused = false;
+      let isPaused = false;
 
-  //     const handleMove = (e) => {
-  //       if (!isPaused) {
-  //         xTo(e.clientX);
-  //         yTo(e.clientY);
-  //       }
-  //     };
+      const handleMove = (e) => {
+        if (!isPaused) {
+          xTo(e.clientX);
+          yTo(e.clientY);
+        }
+      };
 
-  //     const handleEnter = () => {
-  //       if (!isPaused)
-  //         gsap.to(ball, { scale: 1, duration: 0.5, ease: "expo.out" });
-  //     };
+      const handleEnter = () => {
+        if (!isPaused)
+          gsap.to(ball, { scale: 1, duration: 0.5, ease: "expo.out" });
+      };
 
-  //     const handleLeave = () => {
-  //       gsap.to(ball, { scale: 0, duration: 0.5, ease: "expo.out" });
-  //     };
+      const handleLeave = () => {
+        gsap.to(ball, { scale: 0, duration: 0.5, ease: "expo.out" });
+      };
 
-  //     section.addEventListener("mousemove", handleMove);
-  //     section.addEventListener("mouseenter", handleEnter);
-  //     section.addEventListener("mouseleave", handleLeave);
+      section.addEventListener("mousemove", handleMove);
+      section.addEventListener("mouseenter", handleEnter);
+      section.addEventListener("mouseleave", handleLeave);
 
-  //     // Pause when hovering buttons / links
-  //     const pauseElements = section.querySelectorAll(".btn, .scroll-down, iframe, .play-btn");
-  //     const handlePauseEnter = () => {
-  //       isPaused = true;
-  //       gsap.to(ball, { opacity: 0, scale: 0.5, duration: 0.3 });
-  //     };
-  //     const handlePauseLeave = () => {
-  //       isPaused = false;
-  //       gsap.to(ball, { opacity: 1, scale: 1, duration: 0.3 });
-  //     };
+      // Pause when hovering buttons / links
+      const pauseElements = section.querySelectorAll(".btn, .scroll-down, iframe, .play-btn");
+      const handlePauseEnter = () => {
+        isPaused = true;
+        gsap.to(ball, { opacity: 0, scale: 0.5, duration: 0.3 });
+      };
+      const handlePauseLeave = () => {
+        isPaused = false;
+        gsap.to(ball, { opacity: 1, scale: 1, duration: 0.3 });
+      };
 
-  //     pauseElements.forEach((el) => {
-  //       el.addEventListener("mouseenter", handlePauseEnter);
-  //       el.addEventListener("mouseleave", handlePauseLeave);
-  //     });
+      pauseElements.forEach((el) => {
+        el.addEventListener("mouseenter", handlePauseEnter);
+        el.addEventListener("mouseleave", handlePauseLeave);
+      });
 
-  //     // 👉 If this is the video ball, add click-to-play behavior
-  //     if (ballClass === ".video-ball") {
-  //       const videoBall = ball;
-  //       videoBall.addEventListener("click", () => {
-  //         const playButton = document.querySelector(".video-thumbnail");
-  //         if (playButton) playButton.click(); // trigger the React state change
-  //       });
-  //       cleanupFns.push(() => videoBall.removeEventListener("click", () => {}));
-  //     }
+      // 👉 If this is the video ball, add click-to-play behavior
+      if (ballClass === ".video-ball") {
+        const videoBall = ball;
+        videoBall.addEventListener("click", () => {
+          const playButton = document.querySelector(".video-thumbnail");
+          if (playButton) playButton.click(); // trigger the React state change
+        });
+        cleanupFns.push(() => videoBall.removeEventListener("click", () => {}));
+      }
 
-  //     cleanupFns.push(() => {
-  //       section.removeEventListener("mousemove", handleMove);
-  //       section.removeEventListener("mouseenter", handleEnter);
-  //       section.removeEventListener("mouseleave", handleLeave);
-  //       pauseElements.forEach((el) => {
-  //         el.removeEventListener("mouseenter", handlePauseEnter);
-  //         el.removeEventListener("mouseleave", handlePauseLeave);
-  //       });
-  //     });
-  //   });
+      cleanupFns.push(() => {
+        section.removeEventListener("mousemove", handleMove);
+        section.removeEventListener("mouseenter", handleEnter);
+        section.removeEventListener("mouseleave", handleLeave);
+        pauseElements.forEach((el) => {
+          el.removeEventListener("mouseenter", handlePauseEnter);
+          el.removeEventListener("mouseleave", handlePauseLeave);
+        });
+      });
+    });
 
-  //   return () => cleanupFns.forEach((fn) => fn());
-  // }, []);
+    return () => cleanupFns.forEach((fn) => fn());
+  }, []);
 
 
  // 👇 Scroll-based open logic
@@ -663,7 +663,7 @@ export default function Home() {
         </div>
         <Swiper
           modules={[FreeMode, Navigation]}
-          slidesPerView="auto"
+          // slidesPerView="auto"
           spaceBetween={20}
           centeredSlides={true}  
           navigation={true}
