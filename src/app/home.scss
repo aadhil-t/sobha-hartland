@@ -10,7 +10,8 @@
         background-image: url('../../public/assets/homepage/sobha-bnr.png');
         background-size: cover;
         background-position: center;
-        height: 900px;
+        // max-height: 900px;
+        height: 100vh;
         width: 100%;
         display: flex;
         justify-content: center;
@@ -89,9 +90,12 @@
     gap: 1.1rem;
     align-items: center;
     justify-content: flex-end;
-    position: relative;
-    top: 90px;
-  
+    position: fixed;
+    right: 20px;
+    z-index: 999999;
+    @media (max-width: 1024px) {
+        flex-direction: column;
+    }
     .btn-media {
       display: flex;
       align-items: center;

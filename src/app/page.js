@@ -48,10 +48,9 @@ export default function Home() {
           const tl = gsap.timeline({
             scrollTrigger: {
               trigger: sectionRef.current,
-              start: "top 70%", // start when section enters viewport
-              end: "bottom 30%", // end when scrolled past section
+              start: "top 80%",      
+              end: "bottom 20%",
               toggleActions: "play none none reset", 
-              // 👆 plays when enters, resets when leaves top/bottom
             },
           });
 
@@ -75,6 +74,8 @@ export default function Home() {
 
       return () => ctx.revert();
   }, []);
+
+  
 
   // Aos effect //
     useEffect(() => {
@@ -296,7 +297,7 @@ export default function Home() {
 
   const [isCircleActive, setIsCircleActive] = useState(true);
 
-  // 🟥 GLOBAL FOLLOW CIRCLE
+  // GLOBAL FOLLOW CIRCLE
   useEffect(() => {
     const moveCircle = (event) => {
       if (!isCircleActive) return; // 👈 stop movement when disabled
@@ -393,7 +394,7 @@ export default function Home() {
             </div>
 
             <div className="media-btn-blk">
-              <Link href="/callback" className="btn primary" data-aos="fade-left">
+              <Link href="/callback" className="btn primary" data-aos="">
                 Call Back
                 <img
                   src="/assets/homepage/call.svg"
@@ -402,7 +403,7 @@ export default function Home() {
                 />
               </Link>
 
-              <Link href="/whatsapp" className="btn green" data-aos="fade-left">
+              <Link href="/whatsapp" className="btn green" data-aos="">
                 WhatsApp
                 <img
                   src="/assets/homepage/whatsapp.svg"

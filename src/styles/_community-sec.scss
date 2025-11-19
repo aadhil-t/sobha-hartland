@@ -1,7 +1,27 @@
 @import "../styles/variables.scss";
 
+// /* ====================================== */
+// /* SECTION WITH LARGE TOP PADDING (ON CLICK) */
+// /* ====================================== */
+// .community-section.big-padding {
+//   padding: 16rem 0 15.9rem 0 !important;
+// }
+
+// /* ====================================== */
+// /* SECTION WITH SMALL TOP PADDING (AFTER SETTLE) */
+// /* ====================================== */
+// .community-section.small-padding {
+//   padding: 8rem 0 15.9rem 0 !important;
+
+//   @media (max-width: 768px) {
+//     padding: 4rem 0 4rem 0 !important;
+//   }
+// }
+// /* ====================================== */
+
+/* COMMUNITY SECTION STYLES */
 .community-section {
-  padding: 8rem 0 15.9rem 0;
+  padding: 16rem 0 15.9rem 0;
 
   @media (max-width: 768px) {
     padding: 4rem 0 4rem 0;
