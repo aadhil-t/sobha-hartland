@@ -85,35 +85,56 @@
             }
         }
     }
-    .media-btn-blk {
+.media-btn-blk {
+  display: none;
+
+  @media (min-width: 1025px) {
     display: flex;
     gap: 1.1rem;
     align-items: center;
     justify-content: flex-end;
     position: fixed;
-    right: 20px;
+    right: 50px;
+    bottom: 50px;
     z-index: 999999;
-    @media (max-width: 1024px) {
-        flex-direction: column;
-    }
-    .btn-media {
-      display: flex;
-      align-items: center;
-      background-color: $black;
-      gap: 7px;
-      padding: 8px 12px;
-      text-decoration: none;
-      color: white;
-      font-family: "DM Sans";
-      font-weight: 400;
-      font-style: Regular;
-      font-size: 18px;
-      line-height: 20px;
-      letter-spacing: 0%;
-  
-      &.green-btn {           
-        background-color: $green-color;
-      }
+  }
+
+  .btn-media {
+    display: flex;
+    align-items: center;
+    background-color: $black;
+    gap: 7px;
+    padding: 8px 12px;
+    text-decoration: none;
+    color: white;
+    font-family: "DM Sans";
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 20px;
+
+    &.green-btn {
+      background-color: $green-color;
     }
   }
+}
+
+/* ============================= */
+/* Mobile Buttons (Below 1024px) */
+/* ============================= */
+.media-btn-mb-blk {
+  display: none;
+
+  @media (max-width: 1024px) {
+      display: flex;
+      gap: 1.1rem;
+      align-items: center;
+      justify-content: center;
+      position: fixed;
+      right: 5px;
+      bottom: 20px;
+      transform: translateX(-50%);
+      z-index: 999999;
+      flex-direction: column;
+  }
+}
 }

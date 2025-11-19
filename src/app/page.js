@@ -412,6 +412,24 @@ export default function Home() {
                 />
               </Link>
             </div>
+
+            <div className="media-btn-mb-blk">
+              <Link href="/callback" className="btn primary" data-aos="">
+                <img
+                  src="/assets/homepage/call.svg"
+                  alt="Call Back"
+                  className="icon"
+                />
+              </Link>
+
+              <Link href="/whatsapp" className="btn green" data-aos="">
+                <img
+                  src="/assets/homepage/whatsapp.svg"
+                  alt="WhatsApp"
+                  className="icon"
+                />
+              </Link>
+            </div>
           </div>
         </div>
 
