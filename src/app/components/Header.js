@@ -32,7 +32,7 @@ export default function Header() {
           <div className="header-wrapper">
             <div className="header-left">
               <img
-                src="/assets/homepage/header-icon.png"
+                src="/assets/homepage/header-icon.svg"
                 alt="header-logo"
                 className="icon"
               />
