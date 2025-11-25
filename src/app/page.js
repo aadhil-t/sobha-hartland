@@ -11,11 +11,12 @@ import "../styles/_step-sec.scss";
 import "../styles/_image-sec.scss";
 import "../styles/_information.scss";
 import "../styles/_dubai-sec.scss";
+import "../styles/_premium-sec.scss";
 import "../styles/_scroll.scss";
 import Header from "./components/Header";
 import AnimatedButton from "../app/components/Connectbtn"; // adjust path if needed
 import { Swiper, SwiperSlide } from "swiper/react";
-import { FreeMode, Navigation } from "swiper/modules";
+import { FreeMode, Navigation, Pagination  } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
@@ -31,6 +32,42 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 export default function Home() {
+
+
+  
+  const premiumData = [
+  {
+    title: "Skyvue Altier",
+    subtitle: "1, 1.5, 2, 2.5, 3 and 4 Bedroom Apartments",
+    img: "/assets/homepage/premium1.png",
+  },
+  {
+    title: "Skyvue Solair",
+    subtitle: "1, 1.5, 2 and 4 Bedroom Apartments",
+    img: "/assets/homepage/premium1.png",
+  },
+  {
+    title: "Skyscape Altius",
+    subtitle: "1, 1.5, 2 and 2.5 Bedroom Apartments",
+    img: "/assets/homepage/premium1.png",
+  },
+  {
+    title: "Demo 1",
+    subtitle: "1, 1.5, 2 and 2.5 Bedroom Apartments",
+    img: "/assets/homepage/premium1.png",
+  },
+  {
+    title: "Demo 2",
+    subtitle: "1, 1.5, 2 and 2.5 Bedroom Apartments",
+    img: "/assets/homepage/premium1.png",
+  },
+  {
+    title: "Demo 3",
+    subtitle: "1, 1.5, 2 and 2.5 Bedroom Apartments",
+    img: "/assets/homepage/premium1.png",
+  },
+];
+
 
 
   // community counter animation //
@@ -563,6 +600,96 @@ export default function Home() {
             </div>
           </div>
       </section>
+
+          {/* Premium Section */}
+    <section className="premium-section">
+      <div className="premium-outer">
+        <div className="container">
+
+          <h4 className="sub-heading">Discover a</h4>
+          <h2 className="main-heading">Premium Lifestyle</h2>
+
+          {/* CUSTOM PREV/NEXT BUTTONS */}
+          <div className="premium-nav">
+            <button className="premium-prev">
+              <img src="/assets/homepage/left-icon.svg" alt="Previous" />
+            </button>
+            <button className="premium-next">
+              <img src="/assets/homepage/right-icon.svg" alt="Next" />
+            </button>
+          </div>
+
+          <Swiper
+            modules={[Navigation, Pagination]}
+            navigation={{
+              prevEl: ".premium-prev",
+              nextEl: ".premium-next",
+            }}
+            pagination={{ clickable: true }}
+            slidesPerView={3}
+            spaceBetween={55}
+            breakpoints={{
+              1100: { slidesPerView: 3 },
+              1024: { slidesPerView: 2 },
+              688: { slidesPerView: 2 },
+              0: { slidesPerView: 1 },
+            }}
+            className="premiumSwiper"
+          >
+            {premiumData.map((item, i) => (
+              <SwiperSlide key={i}>
+                <div className="premium-card">
+
+                  {/* IMAGE + HOVER ENQUIRE */}
+                  <div className="image-wrapper">
+                    <img src={item.img} alt={item.title} />
+
+                    {/* HOVER ENQUIRE BOX */}
+                    <div className="enquire-box">ENQUIRE NOW!</div>
+                  </div>
+
+                  {/* TITLE */}
+                  <h3 className="title">{item.title}</h3>
+                  <p className="subtitle">{item.subtitle}</p>
+
+                  {/* CONTENT */}
+                  <div className="info-block">
+                    <p className="lab-head">RANGING FROM</p>
+                    <p className="label">
+                      AED 2.24 M* | INR 5.3 CR* | USD 615 K* | EUR 549 K* | GBP 476 K*
+                    </p>
+
+                    <div className="icon-row">
+                      <img src="/assets/homepage/zoom-icon.svg" alt="Zoom Icon" />
+                      <p>From 869.9 Sq. Ft. &nbsp;&nbsp; From 808.2 Sq. M.</p>
+                    </div>
+
+                    <p className="lab-head">TO</p>
+                    <p className="label">
+                      AED 4.44 M* | INR 10.6 CR* | USD 1.22 M* | EUR 1.20 M* | GBP 989 K*
+                    </p>
+
+                    <div className="icon-row">
+                      <img src="/assets/homepage/zoom-icon.svg" alt="Zoom Icon" />
+                      <p>To 1719 Sq.Ft. &nbsp;&nbsp; To 1580.4 Sq. M.</p>
+                    </div>
+                  </div>
+
+                  {/* FOOTER */}
+                  <p className="handover">Handover – March 2029</p>
+                  <p className="note">*Subject to Availability</p>
+                  <p className="note">*The global prices may vary as per the exchange rate</p>
+
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+
+        </div>
+      </div>
+    </section>
+
+
 
     {/* Video Section */}
       <section className="video-section">
