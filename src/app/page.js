@@ -77,14 +77,24 @@ export default function Home() {
     handover: "Handover – March 2029"
   },
   {
-    title: "Demo 2",
+    title: "Skyvue Spectra",
     subtitle: "1, 1.5, 2 and 2.5 Bedroom Apartments",
-    img: "/assets/homepage/premium2.png",
+    img: "/assets/homepage/premium1.png",
+    rangefrom: "AED 2.24 M* |  INR 5.3 CR* |  USD 615 K* | EUR 549 K* | GBP 476 K*",
+    sqfrom: "From 869.9 Sq. Ft.\u00A0\u00A0 From 80.82 Sq. M.",
+    rangeto: "AED 4.44 M* | INR 10.6 CR* | USD 1.22 M* | EUR 1.20 M* | GBP 989 K*",
+    sqto: "To 1711.9 SQ.FT.\u00A0\u00A0 To 159.04 Sq. M.",
+    handover: "Handover – March 2029"
   },
   {
-    title: "Demo 3",
-    subtitle: "1, 1.5, 2 and 2.5 Bedroom Apartments",
-    img: "/assets/homepage/premium3.png",
+    title: "Skyscape Avenue",
+    subtitle: "1, 1.5, 2, 2.5 and 3 Bedroom Apartments",
+    img: "/assets/homepage/premium1.png",
+    rangefrom: "AED 1.77 M* |  INR 4.1 CR* |  USD 485 K* | EUR 480 K* | GBP 394 K*",
+    sqfrom: "From 762.1 Sq. Ft.\u00A0\u00A0 From 70.8 Sq. M.",
+    rangeto: "AED 4.99 M* | INR 11.6 CR* | USD 1.37 M* | EUR 1.35 M* | GBP 1.11 M*",
+    sqto: "To 2062.6 Sq. Ft.\u00A0\u00A0 To 191.62 Sq. M.",
+    handover: "Handover – March 2029"
   },
 ];
 
