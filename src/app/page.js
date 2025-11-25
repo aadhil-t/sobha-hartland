@@ -38,23 +38,43 @@ export default function Home() {
   const premiumData = [
   {
     title: "Skyvue Altier",
-    subtitle: "1, 1.5, 2, 2.5, 3 and 4 Bedroom Apartments",
+    subtitle: "1 and 2 Bedroom Apartments",
     img: "/assets/homepage/premium1.png",
+    rangefrom: "AED 1.59 M* |  INR 3.7 CR* |  USD 432 K* | EUR 376 K* | GBP 352 K*",
+    sqfrom: "From 551.01 Sq. Ft.\u00A0\u00A0 From 51.19 Sq. M.",
+    rangeto: "AED 4.89 M* | INR 11.8 CR* | USD 1.33 M* | EUR 5.71 M* | GBP 1.01 M*",
+    sqto: "To 1595.32 Sq. Ft.\u00A0\u00A0 To 148.21 Sq. M.",
+    handover: "Handover – June 2030"
   },
   {
     title: "Skyvue Solair",
-    subtitle: "1, 1.5, 2 and 4 Bedroom Apartments",
+    subtitle: "2 and 3.5 Bedroom Apartments",
     img: "/assets/homepage/premium2.png",
+    rangefrom: "AED 1.83 M* |  INR 4.3 CR* |  USD 503 K* | EUR 497 K* | GBP 409 K*",
+    sqfrom: "From 755.1 Sq. Ft.\u00A0\u00A0 From 70.15 Sq. M.",
+    rangeto: "AED 5.67 M* | INR 13.1 CR* | USD 1.55 M* | EUR 1.54 M* | GBP 1.26 M*",
+    sqto: "To 2288.9 Sq. Ft.\u00A0\u00A0 To 212.65 Sq. M.",
+    handover: "Handover – March 2029"
   },
   {
     title: "Skyscape Altius",
     subtitle: "1, 1.5, 2 and 2.5 Bedroom Apartments",
     img: "/assets/homepage/premium3.png",
+    rangefrom: "AED 1.90 M* |  INR 4.5 CR* |  USD 521 K* | EUR 462 K* | GBP 400 K*",
+    sqfrom: "From 827.5 Sq. Ft.\u00A0\u00A0 From 76.88 Sq. M.",
+    rangeto: "AED 8.03 M* | INR 19.1 CR* | USD 2.20 M* | EUR 2.18 M* | GBP 1.79 M*",
+    sqto: "To 2886.6 Sq. Ft.\u00A0\u00A0 To 268.17 Sq. M.",
+    handover: "Handover – Dec 2028"
   },
   {
-    title: "Demo 1",
-    subtitle: "1, 1.5, 2 and 2.5 Bedroom Apartments",
+    title: "Skyvue Stellar",
+    subtitle: "1, 1.5, 2 and 4 Bedroom Apartments",
     img: "/assets/homepage/premium1.png",
+    rangefrom: "AED 2.18 M* |  INR 5.2 CR* |  USD 597 K* | EUR 532 K* | GBP 461 K*",
+    sqfrom: "From 791.8 Sq. Ft.\u00A0\u00A0 From 73.56 Sq. M.",
+    rangeto: "AED 8.85 M* | INR 21.1 CR* | USD 2.42 M* | EUR 2.40 M* | GBP 1.97 M*",
+    sqto: "To 3110.7 Sq. Ft.\u00A0\u00A0 To 288.99 Sq. M.",
+    handover: "Handover – March 2029"
   },
   {
     title: "Demo 2",
@@ -655,28 +675,28 @@ export default function Home() {
                   {/* CONTENT */}
                   <div className="info-block">
                     <p className="lab-head">RANGING FROM</p>
-                    <p className="label">
-                      AED 2.24 M* | INR 5.3 CR* | USD 615 K* | EUR 549 K* | GBP 476 K*
+                    <p className="label rangefrom">
+                      {item.rangefrom}
                     </p>
 
                     <div className="icon-row">
                       <img src="/assets/homepage/zoom-icon.svg" alt="Zoom Icon" />
-                      <p>From 869.9 Sq. Ft. &nbsp;&nbsp; From 808.2 Sq. M.</p>
+                      <p className="sqfrom">{item.sqfrom}</p>
                     </div>
 
                     <p className="lab-head">TO</p>
-                    <p className="label">
-                      AED 4.44 M* | INR 10.6 CR* | USD 1.22 M* | EUR 1.20 M* | GBP 989 K*
+                    <p className="label rangeto">
+                      {item.rangeto}
                     </p>
 
                     <div className="icon-row">
                       <img src="/assets/homepage/zoom-icon.svg" alt="Zoom Icon" />
-                      <p>To 1719 Sq.Ft. &nbsp;&nbsp; To 1580.4 Sq. M.</p>
+                      <p className="sqto">{item.sqto}</p>
                     </div>
                   </div>
 
                   {/* FOOTER */}
-                  <p className="handover">Handover – March 2029</p>
+                  <p className="handover">{item.handover}</p>
                   <p className="note">*Subject to Availability</p>
                   <p className="note">*The global prices may vary as per the exchange rate</p>
 
