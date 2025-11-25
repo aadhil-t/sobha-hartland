@@ -44,12 +44,12 @@ export default function Home() {
   {
     title: "Skyvue Solair",
     subtitle: "1, 1.5, 2 and 4 Bedroom Apartments",
-    img: "/assets/homepage/premium1.png",
+    img: "/assets/homepage/premium2.png",
   },
   {
     title: "Skyscape Altius",
     subtitle: "1, 1.5, 2 and 2.5 Bedroom Apartments",
-    img: "/assets/homepage/premium1.png",
+    img: "/assets/homepage/premium3.png",
   },
   {
     title: "Demo 1",
@@ -59,12 +59,12 @@ export default function Home() {
   {
     title: "Demo 2",
     subtitle: "1, 1.5, 2 and 2.5 Bedroom Apartments",
-    img: "/assets/homepage/premium1.png",
+    img: "/assets/homepage/premium2.png",
   },
   {
     title: "Demo 3",
     subtitle: "1, 1.5, 2 and 2.5 Bedroom Apartments",
-    img: "/assets/homepage/premium1.png",
+    img: "/assets/homepage/premium3.png",
   },
 ];
 
